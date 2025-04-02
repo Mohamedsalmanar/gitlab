@@ -1,0 +1,74 @@
+git branch branch_name
+git checkout branch_name
+
+git add .
+git commit -m 'message'
+git push
+git push -set--upstream origin branch_name
+
+git merge branch_name
+
+In Python, Variable is an Object. Is it so? In Python, Everything is an Object. Python is strongly object oriented programming language. 
+
+Pointers in C: 
+
+In Python, Everything is an Object. 
+Object - பொருள்: Real Time Entity / Physical Entity / Real Life Entity. 
+
+Class: Logical Entity / Template / Blueprint
+
+Object represents class.
+Object is sample of class. 
+Object is instance of class. 
+
+Object cannot be present without class - True / False
+Class can be present without object    - True / False
+
+Python is dynamically typed programming language. 
+
+name = 'salman'
+age = 25
+height = 5.6
+
+amount = 10000
+interest = 7.5
+months = 13
+print((int) (amount * interest * months)) # 920000.6776
+
+no = 12122222222222222222222222222222222222
+print(no)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
