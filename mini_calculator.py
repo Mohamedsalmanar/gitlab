@@ -12,6 +12,6 @@ elif op == '-':
 elif op == '*':
     print("Result:", a * b)
 elif op == '/':
-    print("Result:", a / b)
+    print("Result:", round(a / b,2))
 else:
     print("Invalid operation")
