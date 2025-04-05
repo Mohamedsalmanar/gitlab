@@ -4,4 +4,12 @@ no2 = int(input("Enter the second no."))
 ops = input("what operation would you like to perform +, -, *, /")
 
 if ops == '+':
-    print("Result:",no1+no2)
+    print("Result:", no1+no2)
+elif ops == '-':
+    print("Result:", no1-no2)
+elif ops == '*':
+    print("Result:", no1*no2)
+elif ops == '/':
+    print("Result:", no1/no2)
+else
+    print("Invalid input")
