@@ -1,0 +1,90 @@
+In Python, Everything is an Object. 
+
+In Python, every python is a Module. 
+
+Documentation String: '''   '''
+
+calc2.py: 
+---------
+'''Deals With Arithmetic Operations'''
+def add(no1,no2):
+    print(no1+no2)  #Function Definition - வரையறை
+
+def subtract(no1,no2):
+    print(no1-no2)
+
+def multiply(no1,no2):
+    print(no1*no2)
+
+def divide(no1,no2):
+    print(no1/no2)
+
+def find_power(no1, no2):
+    print(no1 ** no2)    
+
+---------
+user.py: 
+--------
+import calc2
+
+calc2.add(123,321)
+
+print(calc2.__doc__)
+print(dir(calc2))
+print(calc2.__name__)
+print(calc2.__file__)
+print(calc2.__spec__)
+print(calc2.__package__)
+----------
+OTP Generator: 
+import random
+
+#print(random.__doc__)
+#print(dir(random))
+#print(round(random.random(),2)* 100)
+#print(dir(random))
+print(random.randint(100000,1000000))
+
+-------------
+
+import calc2
+print(calc2.__name__)
+print(__name__)
+
+.pyc file will be generated for all python modules. 
+
+-----------
+from calc2 import add, subtract 
+
+add(10,20)
+#calc2.add(10,20)
+------------
+
+from emoji import emojize 
+print(emojize(":thumbs_up:")) 
+
+-----------
+import sys
+print(sys.argv[2])
+
+#print(sys.__doc__)
+
+------------
+import sys
+#print(sys.path)
+#print(type(sys.path))
+sys.path.append('/home/muthu/Documents/B10')
+#print(sys.__doc__)
+print(sys.path)
+
+import calc2
+calc2.add(10,20)
+-------------
+
+
+
+
+
+
+
+
