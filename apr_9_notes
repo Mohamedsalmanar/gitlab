@@ -1,0 +1,111 @@
+no1 = int(input("Enter no. "))
+no2 = int(input("Enter no. "))
+if no1>no2:
+    print(no1)
+elif no1<no2:
+    print(no2)
+else:
+    print('no1 and no2 are same')
+----------
+no = 1 
+while no<=5:
+    print(no, end=' ')
+    no+=1
+--------
+எண் = 1 
+while எண்<=5:
+    print(எண், end=' ')
+    எண்+=1
+
+#எண் = 1
+#எப்போது எண் ஐந்தை விடக் குறைவாக இருக்கிறதோ அப்போது:
+#    print(எண், end=' ')
+#    print செய்த பிறகு எண்ணுடன் 1ஐக் கூட்டுக
+------------
+print('Hi')
+print('Hi','Hello')
+print('mohammed','salman')
+print(5,10,15)
+print('09','April','2025',sep='-',end='/')
+#print('09','April','2025', end='#')
+
+print(1,end=' ')
+print(2,end=' ')
+print(3,end=' ')
+print(4,end=' ')
+print(5,end=' ')
+-----------
+no = 1
+while no<=5:
+    print(1,end=' ')
+    no+=1
+
+#no = 1
+#print(1,end=' ')
+#no+=1
+#print(1,end=' ')
+#no+=1
+#print(1,end=' ')
+#no+=1
+#print(1,end=' ')
+#no+=1
+#print(1,end=' ')
+#no+=1
+
+-----------
+#Addition of First N Numbers
+no = 1
+total = 0
+while no<=5:
+    print(no,end=' ')
+    total = total + no
+    no+=1
+print('\n', total,sep='')
+
+---------------
+#Multiplication of First N Numbers
+no = 1
+total = 1
+while no<=5:
+    print(no,end=' ')
+    total = total * no
+    no+=1
+print('\n', total,sep='')
+
+
+---------
+#Multiplication of First N Numbers
+no = 1
+total = 1
+while no<=5:
+    total = total * no
+    #print(no, total,end=' ')
+    no+=1
+else:
+    print(total)
+-----------
+no = 1
+while no<=5:
+    if no%4==0: 
+        break
+    print(no)
+    no+=1
+else:
+    print("hi", no)
+-------------
+1) Odd Or Even 
+2) Prime Number
+
+
+
+
+
+
+
+
+
+
+
+
+
+

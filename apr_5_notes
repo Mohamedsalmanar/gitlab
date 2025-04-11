@@ -1,0 +1,102 @@
+1) What is Variable?
+2) What is Function?
+3) Types of Arguments
+
+def chitchat():
+    print("Chatting with Friends")
+
+
+def withdraw(pin):
+    print("Entering", pin)
+    return 500
+
+def watch():
+    return "CSK"
+    
+chitchat()
+purse = withdraw(1234)
+print(purse)
+
+--------------
+def eb_reading():
+    units = 120
+    return units
+
+def calculate_amount(unit):
+    if unit<100:
+        print('Free')
+    elif unit<200:
+        print(unit * 1.20)
+    elif unit<300:
+        print(unit * 2)
+
+consumed_units = eb_reading()
+calculate_amount(consumed_units)
+
+Application Programming Interface: 
+
+starting_point = Velachery,+Chennai,+Tamil+Nadu
+ending_point = Tambaram Railway Station
+
+JSON: 
+tourist
+{
+from:velachery, 
+to: tambaram
+route: velachery main road, 
+route2: go straight
+}
+
+
+
+
+
+
+
+
+----------------
+def add(a, b):
+    return a + b
+
+result = add(5, 3)
+print("Sum:", result)  # Output: Sum: 8
+
+
+public class ElectricityBilling {
+
+    public static int ebReading() {
+        int units = 120;
+        return units;
+    }
+
+    public static void calculateAmount(int unit) {
+        if (unit < 100) {
+            System.out.println("Free");
+        } else if (unit < 200) {
+            System.out.println(unit * 1.20);
+        } else if (unit < 300) {
+            System.out.println(unit * 2);
+        }
+    }
+}
+
+
+list, tuple
+set, 
+dict
+
+looping: 
+DJANGO: 
+
+Automating the Boring Stuff
+
+
+
+
+
+
+
+
+
+
+
