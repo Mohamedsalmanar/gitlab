@@ -1,0 +1,136 @@
+count = 1
+if count<=5: 
+    print(1)   
+count = count + 1 #count++ is not there in python
+if count<=5:
+    print(1)
+count = count + 1
+if count<=5:
+    print(1)
+count = count + 1
+if count<=5:
+    print(1)
+count = count + 1
+if count<=5:
+    print(1)
+count = count + 1
+if count<=5:
+    print(1)
+count = count + 1
+if count<=5:
+    print(1)
+count = count + 1
+if count<=5:
+    print(1)
+count = count + 1
+
+----------
+count = 1
+while count<=5: 
+    print(1)   
+count = count + 1
+----------
+count = 1
+while count<=50: 
+    print(1)   
+    count+=1 #count = count+1
+
+#1 2 3 4 5 6 7 8 9 10
+#1 3 5 7 9
+
+----------------
+print(1)
+print(3)
+print(5)
+print(7)
+print(9)
+
+no = 1
+print(no)
+no=no+2
+print(no)
+no=no+2
+print(no)
+no=no+2
+print(no)
+no=no+2
+print(no)
+
+no = 1
+while no<=9:
+    print(no)
+    no=no+2
+-----------------------
+count=1
+while count<=10:
+    print(count)
+    count=count+2
+
+count=2
+while count<=10:
+    print(count)
+    count=count+2
+
+count=9
+while count>=0:
+    print(count)
+    count=count-2
+
+count=10
+while count>=0:
+    print(count)
+    count=count-2
+------------
+#Guess the Number Game
+import random
+system_no=random.randint(1,10)
+
+while True: # 11 is less than 10 True / False
+    num=int(input("Enter number between 1 to 10: "))
+    if num==system_no:
+        print("You guessed the right number")
+        break
+    else:
+        print("Please try again")
+    
+===============
+#1 2 3 4 5 6 7 8 9 10
+RED BLUE
+
+no=1
+while no<=10:
+    if no%2==0:
+        print("Blue")
+    else:
+        print("Red")
+    no=no+1
+
+count =1
+while count<=10:
+    if count%2==0 and count%4==0:
+        print("GREEN")
+    elif count%2==0:
+        print("BLUE")
+    else:
+'""""""""""""
+|("Too Low ! Try again")
+    else:
+        
+        print("Too High ! Try again")
+    
+1) Divisors of given number
+20: 2 4 5 10 20
+2) Prime Number
+5,7, 11, 13, 17, 19
+3) Common Divisors of two given numbers
+4) Least Common Divisor of two given numbers
+
+
+
+
+
+
+
+
+
+
