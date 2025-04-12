@@ -1,0 +1,90 @@
+1) Sum Of Digits of a given number
+2) Count of digits of a given number
+3) Reversing a Number
+4) Palindrome
+5) Power of given number
+6) Factorial
+
+#Sum Of Digits of a given number
+
+def sum_of_digits(no):
+    total = 0
+    while no>0:
+        rem = no%10
+        total = total + rem
+        no = no//10 #123
+    return total
+
+#no = int(input("Enter no. "))
+#result = sum_of_digits(no)
+#print(result)
+
+#Count of Digits
+def count_of_digits(no):
+    count = 0
+    while no>0:
+        count+=1
+        no = no//10 #123
+    return count
+
+#no = int(input("Enter no. "))
+#result = count_of_digits(no)
+#print(result)
+
+
+#Reversing a number: 
+
+def reverse(no):
+    total = 0
+    while no>0:
+        rem = no%10
+        total = (total*10) + rem
+        no = no//10 #123
+    return total
+
+#no = int(input("Enter no. "))
+#result = reverse(no)
+#print(result)       #121    12321
+#
+#if result == no:
+#    print("Palindrome")
+#else:   
+#    print("Not Palindrome")
+
+def find_power(base, power):
+    result = 1
+    while power>=1:
+        result = result * base
+        power-=1 #power = power - 1
+    return result
+
+#b = int(input("Enter base value "))
+#p = int(input("Enter power value "))
+#result = find_power(b,p)
+#print(result)
+
+import sys
+print(sys.argv)
+base = int(sys.argv[1])
+power = int(sys.argv[2])
+
+def find_fact(no):
+    factorial = 1
+    while no>=1:
+        factorial = factorial * no
+        no-=1
+    return factorial
+
+
+no = int(input("Enter no. "))
+result = find_fact(no)
+print(result)
+Task: 
+Armstrong Number
+1) Neon
+2) Strong
+3) Perfect Number
+4) Sum of first n natural numbers
+5) Emirp Number
+
+
