@@ -1,0 +1,6 @@
+number = 7893
+sum = 0
+while number > 0:
+	sum = number%10 + sum
+	number = number // 10
+print(sum)
