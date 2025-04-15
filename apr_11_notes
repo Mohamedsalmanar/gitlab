@@ -94,7 +94,7 @@ while True: # 11 is less than 10 True / False
         print("Please try again")
     
 ===============
-#1 2 3 4 5 6 7 8 9 10
+-#1 2 3 4 5 6 7 8 9 10
 #RED BLUE
 
 no=1
