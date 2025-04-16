@@ -1,0 +1,225 @@
+numbers are equal to the sum of their digits raised to the power of the number of digits.
+
+153: 
+1) Sum of Digits: 
+2) Count of Digits:  3
+
+3   -> 3 power 3    -->  27
+5   -> 5 power 3    --> 125
+1   -> 1 power 3    -->   1
+                        ----
+                        153
+
+
+153: 
+#Count of Digits
+def count_of_digits(no):
+    count = 0
+    while no>0:
+        count+=1
+        no = no//10 #123
+    return count
+
+def find_power(base, power):
+    result = 1
+    while power>=1:
+        result = result * base
+        power-=1 #power = power - 1
+    return result
+
+def find_armstrong(no, power): #153
+    armstrong = 0
+    while no>0:
+        rem = no%10     #3
+        armstrong = armstrong + find_power(rem,power)
+        no = no//10 #123
+    return armstrong
+    
+
+no = int(input("Enter no. ")) #153
+count = count_of_digits(no)
+result = find_armstrong(no, count)
+
+if no == result:
+    print("Armstrong Number")
+else:
+    print("Not Armstrong Number")
+
+
+
+1) Get Number from User #153
+2) Find count of digits #3
+
+----
+TASKS: 
+
+1) Neon
+2) Strong
+3) Perfect Number
+4) Sum of first n natural numbers
+5) Emirp Number
+
+Neon: 
+A neon number is a number where the sum of digits of square of the number is equal to the numbers
+
+1) Get Number from user  Eg. no = 9 
+2) Find square of it.   
+    square = no * no
+    no = no**2
+3) Find sum of digits of the square number. 81 -> 9
+4) If user given number and answer of step #3 --> Neon Number. 
+
+10  --> 100 --> 1
+
+Strong Number: 
+A strong number is a number whose sum of factorial of digits is equal to the original number.
+1) Get no. from user. eg. no = 145
+2) Take every digit. 
+    5   -> Factorial of 5 -> 5! --> 120
+    4   -> Factorial of 4 -> 4! -->  24
+    1   -> Factorial of 1 -> 1! -->   1
+                             Total: 145
+
+Perfect Number: 
+a perfect number is a positive integer that is equal to the sum of its positive divisors, excluding the number itself.
+Eg. 6
+1) Get no. from user. 
+2) Find divisors of given number, excluding given number
+    Divisors: 1,2,3
+3) Sum of divisors: 1+2+3   --> 6
+
+
+Sum of first n natural numbers: 
+Factorial: Multiplication: -> Addition
+
+Emirp Number: 
+prime -> emirp number: 
+13 --> Prime Number
+31 --> Emirp Number
+17 --> 71 - Emirp Number
+
+String: str வார்த்தை
+
+name = input("Your Name Please: ")
+print(name[0])
+print(name[1])
+print(name[2])
+print(name[3])
+
+name = input("Your Name Please: ")
+print(name[-1])
+print(name[-2])
+print(name[-3])
+print(name[-4])
+#subscript or index
+
+name = input("Your Name Please: ")
+print(name)
+
+name = input("Your Name Please: ")
+print(name[0:4])
+
+name = input("Your Name Please: ")
+print(name[0:4])
+print(name[3:6]) # first colon : slicing operator
+print(name[2:10:2]) #Second colon : step operator
+
+name = input("Your Name Please: ")
+print(name[4:0:-1])
+print(name[6:3:-1]) # first colon : slicing operator
+print(name[10:2:-2]) #Second colon : step operator
+
+name = input("Your Name Please: ")
+print(name[-1:-5:-1])
+print(name[-1:-10:-2])
+
+name = input("Your Name Please: ")
+print(len(name))
+
+name = input("Your Name Please: ") #ravi
+print(name[0:len(name)])
+
+name = input("Your Name Please: ") #ravi
+print(name[:])
+print(name[3:])
+print(name[:4])
+print(name[3::2])
+print(name[:4:2])
+print(name[::2])
+print(name[::-1])
+print(name[-1::-1])
+print(name[-1::-2])
+
+alphabets = 'abcedfghijklmnopqrstuvwxyz'
+print(alphabets[-26:])
+print(alphabets[-26:-1])
+print(alphabets[-26:-20:-2])
+print(alphabets[-26:-1:2])
+
+sen = input("Your Name Please: ") #today is sunday
+print(sen.title())
+print(sen.upper())
+print(sen.lower())
+
+name = 'kavin'
+age = 5
+print("hi", name, "Your age is", age)
+
+name = 'kavin'
+age = 5
+print("hi"+ name+ "Your age is"+ age)
+
+TypeError: can only concatenate str (not "int") to str
+
+name1 = 'rajini'
+name2 = 'kanth'
+age = 70
+
+print(name1,name2,age)
+
+
+string formatting: 
+
+name1='rajini'
+name2 = 'kanth'
+age = 70
+print("{}{} age is {}".format(name1,name2,age))
+
+name1='rajini'
+name2 = 'kanth'
+age = 70
+print(f"{name1}{name2} age is {age}")
+
+name1='rajini'
+name2 = 'kanth'
+age = 70
+print(f"{name1}        {name2} age is {age}")
+
+sen = '''rajini's movie is vettaiyan'''
+sen = """Thiruvalluvar's books is Thirukkural"""
+
+author = 'thiruvalluvar'
+book = 'thirukkural'
+print("{} wrote {}".format(author, book))
+#thiruvalluvar wrote thirukkural
+
+print("{} is written by {}".format(book, author))
+print("{1} is written by {0}".format(author, book))
+print("{a} is written by {b}".format(b=author, a=book))
+
+
+print('kavin'+4)
+print('kavin'*4)
+
+name = input("Name: ")
+print(name[0].upper(), name[1:])
+
+Using format / f: 
+
+name = input("Name: ")
+print("{} {}".format(name[0].upper(),name[1:]))
+
+print(f'{name[0].upper()}{name[1:]}')
+
+
+
