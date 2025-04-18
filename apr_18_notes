@@ -1,0 +1,215 @@
+String: str: 
+
+name = 'muthusaravanan'
+
+for letter in name:
+    print(letter)
+----------
+name = 'muthusaravanan'
+
+l = len(name)
+i = 0 
+while i<l:
+    print(name[i],end=' ')
+    i+=1
+---------
+for letter in name:
+    print(letter, end=' ')
+
+print(*objects, sep=' ',end='\n')
+print()
+print('abcd')
+print('abcd','efgh')
+print('abcd','efgh', 'ijkl')
+
+name = 'how are you'
+
+#how
+#are 
+#you
+for letter in name:
+    if letter!=' ':
+        print(letter,end='')
+
+#prime number: 
+
+no = int(input("Enter no. "))
+
+div = 2
+while div<no:
+    if no%div == 0:
+        print('Not Prime')
+        break
+    div+=1
+else:
+    print('Prime Number')
+
+-----------
+name = 'how are you'
+
+count = 0
+for letter in name:
+    if letter == 'o':
+        count+=1
+else:
+    print(count)
+        
+-----------
+name = 'education'
+
+count = 0
+for letter in name:
+    if letter == 'o':
+        count+=1
+else:
+    print(count)
+        
+---------------
+name = "education"
+vowels="aeiou"
+count_vowels =0
+for charact in name:
+    if charact in vowels:
+        count_vowels +=1
+else:
+    print("Vowels count from the string is ",count_vowels)
+
+name = "education"
+#vowels="aeiou"
+count_vowels =0
+for charact in name:
+    if charact in "aeiou":
+        count_vowels +=1
+else:
+    print("Vowels count from the string is ",count_vowels)
+----------
+#count of words in given sentence
+name = "today is saturday"
+
+#count of words in given sentence
+name = "today is saturday"
+count = 1
+for letter in name:
+    if letter == ' ':
+        count+=1
+print('No. of words is', count)
+------------
+#Printing in reverse order
+sentence = 'today'
+l = len(sentence)
+i = l-1
+while i>=0:
+    print(sentence[i],end='')
+    i-=1
+----------------
+#range
+
+for no in range(5):
+    print(no, end=' ')
+print()
+for no in range(1,5):
+    print(no, end=' ')
+print()
+for no in range(1,10,2):
+    print(no, end=' ')
+print()
+for no in range(5,1,-1):
+    print(no, end=' ')
+print()
+for no in range(10,3,-2):
+    print(no, end=' ')
+------------
+word = 'Good'
+for i in range(len(word)):
+    print(word[i],end='')
+
+---------
+word = 'Good'
+for i in range(len(word),-1,-1):
+    print(word[i],end='')
+
+word = 'Good'
+for i in range(len(word)-1,-1,-1):
+    print(word[i],end='')
+---------------
+#removing space at front
+sentence = '             how are you'
+for letter in sentence: 
+    if letter == ' ':
+        pass
+    else:
+        print(letter,end='')
+-----------
+#removing space at front
+sentence = '             how are you'
+first_letter = False
+for letter in sentence: 
+    if letter == ' ' and first_letter == False:
+        continue
+    else:
+        first_letter = True
+        print(letter, end='')
+-----------
+#removing space at the end
+sentence = 'how are you         '
+last_letter = False
+l = len(sentence)
+i = l - 1
+while i>=0:
+    if sentence[i]==' ' and last_letter==False:
+        i-=1
+        continue
+    else:
+        last_letter = True
+        print(sentence[i],end='')
+    i-=1
+    
+----------------
+#removing space at the end
+sentence = 'how are you         '
+last_letter = False
+l = len(sentence)
+i = l - 1
+while i>=0:
+    if sentence[i]!=' ':
+        end = i
+        start = 0
+        while start<=end:
+            print(sentence[start],end='')
+            start+=1
+        break 
+    i-=1   
+---------------
+Task: 
+#removing unwanted spaces from given sentence
+sentence = 'how           are           you'
+#output: how are you
+
+-----------
+sentence = 'today'
+print(sentence.find('day'))
+----------
+word = 'today'
+key = 'day'
+key_length = len(key)
+
+print(word[:key_length])
+
+word = 'today'
+key = 'day'
+key_length = len(key)
+
+result = word[0:key_length])
+if result == key:
+    print("present")
+
+-----------------
+
+   
+  
+
+        
+        
+       
+
+       
