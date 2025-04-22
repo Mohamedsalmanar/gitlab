@@ -1,0 +1,340 @@
+str
+int 
+bool 
+float
+
+Iterable Datatypes: 
+
+name = 'kavin'
+Iteration: Looping: 
+no = 12345
+5   4   3   2   1   --> %10 
+
+name = 'kavin'
+for letter in name:
+    print(letter)
+
+List, Tuple, Set, Dictionary: 
+
+List: 
+A built-in Python sequence. Despite its name it is more akin to an array in other languages
+
+Group of Individual objects into a single entity.
+
+grocery_list = ['soap', 12, True, 'rice', 'veggies',4.5]
+
+print(grocery_list)
+
+1) Can we have duplicates objects / elements in List?
+Yes, we can have. 
+
+grocery_list = ['soap', 12, 'soap',True, 'rice', 'veggies',4.5]
+
+2) Can we have different datatypes in List?
+Yes, we can have. 
+
+3) Are List objects are Mutable?
+Yes. 
+
+4) Is List Index based?
+Yes. 
+
+grocery_list = ['soap', 12, True, 'rice', 'veggies',4.5]
+
+print(grocery_list[0])
+print(grocery_list[2])
+print(grocery_list[-1])
+print(grocery_list[-2])
+
+String is immutable: 
+
+name1 = 'kathir'
+name2 = 'kathir'
+print(id(name1))
+print(id(name2))
+
+---
+name1 = 'kavin'
+name2 = 'kathir'
+print(id(name1))
+print(id(name2))
+
+--
+citizen1 = 'indian'
+citizen2 = 'indian'
+citizen3 = 'indian'
+citizen4 = 'indian'
+print(id(citizen1))
+print(id(citizen2))
+print(id(citizen3))
+print(id(citizen4))
+citizen1 = 'Canada'
+
+print(id(citizen1))
+print(id(citizen2))
+print(id(citizen3))
+print(id(citizen4))
+
+Strings are immutable.  Once we create a string object, its content cannot be changed. If we try to edit it, it wont get edited.  Instead, a new memory space will be created and the editings will be updated there. 
+
+
+name = 'muthu'
+name[0] = 'M'
+print(name)
+
+TypeError: 'str' object does not support item assignment
+
+name = 'muthu'
+name = 'M' + name[1:]
+print(name)
+
+-----------
+List is mutable: 
+grocery_list = ['soap', 12, True, 'rice', 'veggies',4.5]
+
+grocery_list[0] = 'shampoo'
+print(grocery_list)
+
+List Properties: 
+1) List of group of individual elements into a single entity
+2) In List, Insertion order is maintained. 
+3) List is Index / Subscript based. 
+4) Heterogeneous elements are permitted in List
+5) List Elements are Mutable. 
+
+List Creation: []
+1) Empty list creation: 
+l= []
+print(type(l))
+
+append() function: adding at the end. 
+l=[]
+l.append('abcd')
+l.append(1234)
+l.append(True)
+l.append(5.4)
+print(l)
+
+List with elements: 
+l = ['abcd',1234,True, 5.4]
+
+How to add element at specific position(index)
+
+l.insert(2,False)
+
+l = ['abcd',1234,True, 5.4]
+    #   0   1      2    3
+l[-1] = 'pqrs'
+print(l)
+l.insert(-1,'wxyz')
+print(l)
+---------
+l = ['abcd',1234,True, 5.4]
+    #   0   1      2    3
+l[10] = 'pqrs'
+print(l)
+l[10] = 'pqrs'
+IndexError: list assignment index out of range
+
+l = ['abcd',1234,True, 5.4]
+    #   0   1      2    3
+l.insert(10,'wxyz')
+print(l)
+---------
+l1 = ['abcd',1234,True, 5.4]
+l2 = [10,20,30,40]
+
+l3 = [l1,l2]
+print(l3)
+print(len(l3))
+print(type(l3))
+-----------
+
+
+l.insert(10,'wxyz')
+print(l)
+
+---------------
+l1 = [10,20,30,40]
+for elem in l1:
+    print(elem, end=' ')
+print()
+l2 = [40,30,20,10]
+for elem in l2:
+    print(elem, end=' ')
+print()
+l3 = [l1,l2]
+for elem in l3:
+    print(elem, end=' ')
+------------
+
+for inner_list in l3:
+    for elem in inner_list:
+        print(elem, end=' ')
+    print()
+---------------
+
+q = [90,87,65,67,89]
+h = [96,97,95,69,99]
+a = [99,98,100,76,49]
+
+marks = [q,h,a]
+
+Task: 
+1) Print q, h, a marks in separate lines
+2) Calculate Total and Percentage of q, h and a
+3) Calculate Average of Tamil (first subject) 
+4) Calculate highest total among these three
+
+q = [90,87,65,67,89]
+h = [96,97,95,69,99]
+a = [99,98,100,76,49]
+
+marks = [q,h,a]
+
+i = 0 
+while i<len(marks):
+    print(i, end=' ')
+    i+=1
+
+q = [90,87,65,67,89]
+h = [96,97,95,69,99]
+a = [99,98,100,76,49]
+
+marks = [q,h,a]
+
+i = 0 
+while i<len(marks):
+    print(marks[i], end=' ')
+    i+=1
+
+---------
+Tamil Average: 
+q = [90,87,65,67,89]
+h = [96,97,95,69,99]
+a = [99,98,100,76,49]
+
+marks = [q,h,a]
+
+i = 0 
+total = 0
+while i<len(marks):
+    l = marks[i]
+    total = total + l[0]
+    i+=1
+else:
+    print('Tamil Percentage is', total/len(marks))
+-------
+
+q = [90,87,65,67,89]
+h = [96,97,95,69,99]
+a = [99,98,100,76,49]
+
+marks = [q,h,a]
+
+#Task: 
+#1) Print q, h, a marks in separate lines
+#2) Calculate Total and Percentage of q, h and a
+#3) Calculate Average of Tamil (first subject) 
+#4) Calculate highest total among these three
+
+#Task 1
+for exams in marks: 
+    print(exams)
+
+#Task 2: Calculate Total and Percentage of q, h and a
+
+for exams in marks: 
+    total = 0
+    for subject in exams:
+        total = total + subject
+    print(total/len(exams))
+
+#3) Calculate Average of Tamil (first subject) 
+tamil = 0 
+for exams in marks: 
+    tamil = tamil + exams[0]
+else:
+    print('Average of Tamil is', tamil/len(marks))
+
+
+#4) Calculate highest total among these three
+highest = 0
+for exams in marks: 
+    total = 0
+    for subject in exams:
+        total = total + subject
+    #print(total)
+    if highest<total:
+        highest = total
+else:
+    print(highest)
+
+--------------
+str to list conversion: 
+name = 'rajesh'
+l = list(name)
+print(l)
+
+list to str conversion: 
+name = ''.join(l)
+print(name)
+
+----------------
+name = 'today is sunday'
+l = name.split(' ')
+print(l)
+---------------
+list slicing, stepping: 
+
+l = [10,20,30,40,50,60,70,80]
+print(l[0:3])
+print(l[2:5])
+print(l[2:6:2])
+print(l[6:2:-1])
+print(l[6:2:-2])
+--------------
+l1 = [10,20,30]
+l2 = [30,20,10]
+l3 = l1 + l2
+print(l3)
+
+print(l3*3)
+
+----------------
+List Functions: 
+1) len()
+2) append()
+3) insert()
+4) count()
+
+l = [10,20,10,10,20,30]
+print(l.count(10))
+5) remove()
+l = ['Hi', 'Hello', 'Vanakkam', 'Hi']
+l.remove('Hi')
+print(l)
+
+del l[1]
+print(l)
+element = l.pop(2) # index 2
+print(element)
+print(l)
+-----------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
