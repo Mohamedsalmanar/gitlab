@@ -166,7 +166,7 @@ while i>=0:
     
 ----------------
 #removing space at the end
-sentence = 'how are you         '
+sentence = 'how are you'
 last_letter = False
 l = len(sentence)
 i = l - 1
@@ -185,7 +185,7 @@ Task:
 sentence = 'how           are           you'
 #output: how are you
 
------------
+---------------
 sentence = 'today'
 print(sentence.find('day'))
 ----------
