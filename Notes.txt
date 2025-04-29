@@ -1,0 +1,105 @@
+GIT
+What is GIT
+Version Control
+DVCES - Distributed/Decentralized version control system
+GIT/GITHUB/GITLAB
+Linus Torvlads - 2005
+
+Each system has a local repository that is called GIT
+2016 - Version control
+
+CI/ CD - Continuous Integration Continuous Deployment
+git Rebase
+git checkout mer
+git checkout main
+git cherrypick id
+
+clone
+add
+restore
+commit
+push
+branch
+status
+merge
+checkout
+rebase
+cherrypic
+diff
+
+Dynamically Typed
+There is no need to explicitly tell the datatype. Python will automatically understand the datatype for the given reference variable
+
+Varavu - Data type
+Maari - Variable
+floor division
+
+#What is function?
+#Sequence of actions or set of instructions with a name.
+
+#Naming convention for function
+#ctrl+l --> Clear
+#ls-ll --> Show all
+
+# to add comments in python
+
+Task: What is function?
+What is variable?
+Every variable is a object, everything in a python is a object. Python is a strongly object oriented programming language.
+Object - Porul - Real time entity/physical entity
+Class - Logical entity/template/blueprint
+objects represents class, object is sample of class, object is an instance of class.
+
+Object cannot be present without class
+Class can be present without object
+
+git push -set--upstream origin branch_name - This would create a new branch upstream in gitlab
+
+git merge branch name - 
+
+Force giving an declaration (int)
+
+Functions
+def add(no1, no2)
+	print(no1+no2)
+	
+#def -> Definition
+#add -> Function name
+#no1, no2 -> Arguments / Parameters
+#inputs given to name is called arguments
+
+pass keyword is used to simply pass a function
+
+Function Definition - varaiyarai/ parameter
+
+function call - arguments
+
+HW: What are the types of arguments
+
+Types of function arguments
+1. Default arguments
+If argument is not given, default value present in function parameter would be considered
+def login(username, password='test@123');
+	print('username', password)
+2. Positional arguments - Each positional arguments takes a parameters.
+
+3. Keyword arguments - Define each arguments with a keyword
+
+4. Variable length arguments - Used to give multiple values for a parameters
+
+How do you find datatype of a variable?
+Use type keyword
+no=10
+print(type(no))
+
+How do you find memory of object
+print(id(no))
+
+Tuple - 32,16, 4
+
+Return datatype
+
+Dictionary - mi=20, kkr=32, rr=57
+
+
+HW: 
