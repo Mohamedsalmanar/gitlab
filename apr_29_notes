@@ -1,0 +1,396 @@
+List Functions: 
+1) len()
+2) append()
+
+list.append(x)
+
+    Add an item to the end of the list. Similar to a[len(a):] = [x].
+
+3) insert()
+4) remove()
+5) del
+6) pop()
+7) extend()
+ list.extend(iterable)
+
+    Extend the list by appending all the items from the iterable. 
+
+l1 = [10,20,30]
+l2 = [40,50,60]
+l1.extend(l2)
+print(l1)
+print(len(l1))
+
+
+l2.extend('abcd')
+print(l2)
+print(len(l2))
+
+l2.append('abcd')
+
+print(l1.index(40))
+
+l2.extend('pqrs').extend('xyz')
+
+
+l1 = [100,10,20,40]
+l1.reverse()
+print(l1)
+
+l1 = [10,True]
+l1.reverse()
+print(l1)
+
+l1 = [10,"True"]
+l1.reverse()
+print(l1)
+
+l1 = [10,20,True, "abcd",5.2]
+l1.reverse()
+print(l1)
+-----------
+
+l1 = [100,10,20,30]
+l1.sort()
+print(l1)
+
+l1 = [100,True,20,'Hi']
+l1.sort()
+print(l1)
+
+l1 = [100,10,20,30]
+l1.sort(reverse=True)
+print(l1)
+
+l1 = [100,10,20,30]
+l1.sort(reverse=False)
+print(l1)
+
+print(min(l1))
+print(max(l1))
+print(sum(l1))
+
+l1 = [True, False, True, False]
+l1.sort()
+print(l1)
+
+l1 = ['muthusaravanan', 'suresh', 'rajesh']
+l1.sort() # l1 itself will be sorted. 
+print(l1)
+
+l1 = ['muthusaravanan', 'suresh', 'rajesh']
+l2 = sorted(l1) 
+print(l2)
+
+sort vs sorted
+
+sort --> in-place sorting: Original list gets modified. 
+sorted --> returns a new list with elements sorted. 
+
+l1 = [10,20,30]
+l1.clear()
+print(l1)
+
+#Deep Copy
+l1 = [10,20,30]
+l2 = l1
+print(l2)
+l1[0] = 111
+print(l2)
+
+#Shallow Copy: 
+1) Slicing Operator :
+2) copy()
+
+l1 = [10,20,30]
+l2 = l1[:]
+print(l2)
+l1[0] = 111
+print(l2)
+
+l1 = [10,20,30]
+l2 = l1.copy()
+print(l2)
+l1[0] = 111
+print(l2)
+
+l1 = [10,20,30,10,10,20,20]
+print(l1.count(10))
+
+----------
+Comparing List Objects: 
+
+l1 = ['kavin', 'viyan', 'mathi']
+l2 = ['kavin', 'viyan', 'mathi']
+print(l1 == l2)
+print(l1 != l2)
+
+l1 = ['kavin', 'viyan', 'mathi']
+l2 = ['kavin', 'mathi', 'viyan']
+print(l1 == l2)
+print(l1 != l2)
+print(l1 > l2) #lexicographical order
+print(l1 < l2)
+
+#Membership Operators: in, not in 
+
+l1 = ['kavin', 'viyan', 'mathi']
+print('kavin' in l1)
+print('kathir' not in l1)
+
+
+combs = []
+l1 = [1,2,3]
+l2 = [3,1,4]
+#output: (1,3), (1,4), (2,3), (2,1), (2,4), (3,1), (3,4)
+
+for x in [1,2,3]:
+    for y in [3,1,4]:
+        if x != y:
+            combs.append((x, y))
+
+#1) Find max, second max from a given list
+#2) Find min, second min from a given list
+#3) Reverse a list without using reverse() function 
+
+l = [10,20,30]
+l.reverse()
+print(l)
+
+l1 = [10,20,30]
+l2 = l1[::-1]
+print(l2)
+
+l = [10,20,30]  # Reverse the list
+r = []
+i = len(l)-1
+
+while i>=0:
+    r.append(l[i])
+    i=i-1
+print(r)
+
+l = [10,20,30]
+length = len(l)
+l3 =[]
+
+for x in range (length-1,-1,-1) :
+    l3.append(l[x])
+
+print(l3)
+
+-----------
+#4) Confirm if a given list is palindrome or not: 
+l1 = [10,20,30,20,10]
+l2 = l1[::-1]
+print(l1==l2)
+
+#5) Remove duplicate elements from a list: 
+l1 = [10,20,30,10,20,40]
+#10,20,30,40
+
+l1 = [10,20,30,10,20,40]
+l2 = []
+for element in l1:
+    if element not in l2: 
+        l2.append(element)
+
+print(l2)
+
+#6)Find pairs with a given sum: 
+ l1 = [1,5,2,4,3,7,8,6,0]
+#6 --> 1,5 - 2,4 - 6,0
+
+l1 = [1,5,2,4,3,7,8,6,0]
+#6 --> 1,5 - 2,4 - 6,0
+
+key = l1[0]
+i = 1
+while i<len(l1):
+    if key + l1[i] == 6: 
+        print(key, l1[i])
+    i+=1
+
+key = l1[1]
+i = 2
+while i<len(l1):
+    if key + l1[i] == 6: 
+        print(key, l1[i])
+    i+=1
+
+key = l1[2]
+i = 3
+while i<len(l1):
+    if key + l1[i] == 6: 
+        print(key, l1[i])
+    i+=1
+
+l1 = [1,5,2,4,3,7,8,6,0]
+#6 --> 1,5 - 2,4 - 6,0
+
+sumval = 6
+pairs = []
+
+for i in range (len(l1)):
+    for j in range(i+1,len(l1)):
+        if l1[i]+l1[j]==sumval:
+           pairs.append((l1[i],l1[j]))
+print(" Pairs with sum of values are " ,pairs)
+
+#7 Print only str elements from a given list:
+l1 = [10,20,True, False, 5.4, 'abcd', 'pqrs']
+l1 = [10,20,True, False, 5.4, 'abcd', 'pqrs']
+
+for element in l1: 
+    if isinstance(element, str):
+        print(element)
+
+
+#8 Find Missing number in a list of 1 to n: 
+l = [1,2,3,4,5,6,8,9,10]
+i=0
+j=1
+length = len(l)
+while i<length-1:
+    if l[j] - l[i] == 1:
+        pass
+    else:
+        print(l[j]-1)
+    i+=1
+    j+=1
+
+Formula: Addition of First n numbers: n*(n+1)//2
+
+l = [1,2,3,4,5,6,8,9,10]
+n = len(l)+1
+total = n * (n+1)//2
+print(total)
+list_sum = sum(l)
+print(list_sum)
+print(total - list_sum)
+
+List Comprehension: 
+
+l = []
+for no in range(1,11):
+    l.append(no)
+print(l)
+
+#List Comprehension
+l = [no for no in range(1,11)]
+print(l)
+
+Sample 2: 
+combs = []
+
+for x in [1,2,3]:
+    for y in [3,1,4]:
+        if x != y:
+            combs.append((x, y))
+print(comb)
+
+is equivalent to: 
+comb = [(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
+print(comb)
+
+Syntax: 
+list = [expression for element in iterable if condition]
+------
+squares  = []
+for no in range(1,6):
+    squares.append(no**2)
+
+print(squares)
+
+squares = [no**2 for no in range(1,6)]
+print(squares)
+-------
+
+WHY List Comprehension: 
+1) Concise Code
+2) Readability
+3) Efficiency: (better than normal for loops - Optimized code]
+
+
+#9 Nested List: Flattening a nested list: 
+nested_list = [1, [2, [3,4], 5], 6]
+#[1,2,3,4,5,6]
+nested_list = [1, [2, [3,4], 5], 6]
+flatten_list = []
+for element in nested_list:
+    if isinstance(element, list):
+        flatten_list.extend(element)
+    else:
+        flatten_list.append(element)
+print(flatten_list)
+        
+Note: Should learn Recursion 
+
+
+Task #1: 
+no1 = [10,20,30,40]
+no2 = [30,40,50,60]
+#30, 40 - List Comprehension
+#10,20,50,60 - List Comprehension
+
+Task #2: 
+no1 = [1,2,3]
+no2 = [6,7,8]
+#Combinations: 1,6, 1,7, 1,8, 2,6, 2,7, 2,8, 3,6, 3,7, 3, 8
+
+Task #3: 
+Squares of ONLY Even numbers in a range. 
+Eg. range(1,11)
+1 2 3 4 5 6 7 8 9 10
+#Output: 4 16 36 64 100
+
+Task #4: 
+Flatten a nested list: 
+matrix = [[10,20,30], [40,50,60], [70,80,90]]
+# [10,20,30,40,50,60,70,80,90]
+Clue: nested for loop - Comprehensive approach
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
