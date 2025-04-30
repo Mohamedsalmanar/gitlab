@@ -244,11 +244,11 @@ for exams in marks:
 
 #Task 2: Calculate Total and Percentage of q, h and a
 
-for exams in marks: 
-    total = 0
-    for subject in exams:
-        total = total + subject
-    print(total/len(exams))
+    for exams in marks: 
+        total = 0
+        for subject in exams:
+            total = total + subject
+        print(total/len(exams))
 
 #3) Calculate Average of Tamil (first subject) 
 tamil = 0 
