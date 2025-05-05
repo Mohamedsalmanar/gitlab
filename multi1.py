@@ -1,0 +1,7 @@
+t = (10,20,30,40,50)
+t2 = ()
+print(type(t2))
+t3 = (10)
+print(type(t3))
+t4 = (10,)
+print(type(t4))
