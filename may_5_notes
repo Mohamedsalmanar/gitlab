@@ -1,0 +1,299 @@
+Tuple: 
+- Similar to List
+- List is Mutable - Tuple is immutable
+- Insertion Order is maintained
+- Duplicate elements are allowed
+- Performance - Tuple is good
+
+l = []
+t = ()
+
+t = (10) # int
+t = (10,) #tuple
+
+t = (10,20,30,40,50)
+t2 = ()
+print(type(t2))
+t3 = (10)
+print(type(t3))
+t4 = (10,)
+print(type(t4))
+
+print(t[0])
+print(t[-1])
+print(t[20])
+
+#tuple is immutable: 
+
+t = (10,20,30,40,50)
+t[0] = 100
+print(t)
+
+t = (10,20,30,40,50)
+print(len(t))
+#Slicing a tuple
+print(t[0:3])
+
+#Mathematical Operations: 
+
+t1 = (10,20,30)
+t2 = (40,50,60)
+t3 = t1 + t2
+print(t3)
+print(t1*2)
+print(100 in t1)
+print(100 not in t1)
+
+t1 = (10,20,30)
+t2 = (10,20,30)
+print(id(t1))
+print(id(t2))
+
+Tuple Functions: 
+t1 = (10,12,10,15,20,30,20,20,20)
+print(t1.count(20))
+print(t1.index(12))
+
+t1 = (10,5,8)
+print(sorted(t1,reverse=False) #gives a list, not tuple. 
+
+#Aggregate Functions
+t1 = (10,12,10,15,20,30,20,20,20)
+print(max(t1))
+print(min(t1))
+print(sum(t1))
+
+l = [10,20,30]
+t = tuple(l)
+print(type(t))
+
+--------
+#nested tuple
+nested_tuple = ((10,20), (30,40))
+print(nested_tuple[0])
+print(nested_tuple[0][0])
+print(nested_tuple[1][0])
+----------
+t = ([10,20],(30,40))
+print(t[0])
+print(t[0][0])
+
+t[0][0] = 222
+print(t)
+-------------
+t = ([10,20],(30,40))
+for l in t:
+    print(l)
+
+data = ([10,20,30], [40,50,60], [70,80,90])
+
+#List wise total
+# Print Only second list
+# Print only second element in every list
+
+data = ([10,20,30], [40,50,60], [70,80,90])
+#List wise total
+print(sum(data[0]), sum(data[1]),sum(data[2]))
+# Print Only second list
+print(data[1])
+# Print only second element in every list
+print(data[0][1], data[1][1]),data[2][1])
+
+#Comprehension Approach
+List_wise_total =[sum(lst) for lst in data]
+print(tuple(List_wise_total) )
+sec_list = data[1]
+print(sec_list)
+sec_list_every = [lst[1] for lst in data]
+print(sec_list_every)
+
+Tuple Comprehension: 
+numbers = (no for no in range(1,11))
+print(numbers) #generator object
+
+numbers = (no for no in range(1,11))
+print(numbers)
+for number in numbers: 
+    print(number)
+
+#Tuple Packing, Unpacking: 
+t = 10,20,30
+print(type(t))
+
+#Unpacking
+no1, no2, no3 = t
+print(no1)
+print(no2)
+print(no3)
+
+t = eval(input("Enter tuple elements: "))
+print(t)
+total = 0 
+for num in t:
+    total+=num
+print(total)
+
+Performance: 
+
+import sys
+l = [10,20,30]
+t = (10,20,30)
+
+print(sys.getsizeof(l)) #Dynamic Sizing -> Mutability
+print(sys.getsizeof(t))
+
+Memory: 
+l1 = [10,20,30]
+l2 = l1
+print(id(l1))
+print(id(l2))
+l3 = list(l1)
+print(id(l1))
+print(id(l3))
+
+print(l1 == l2)
+print(l1 is l2)
+print(l1 == l3)
+print(l1 is l3)
+---
+tuple: 
+l1 = (10,20,30)
+l2 = l1
+print(id(l1))
+print(id(l2))
+l3 = tuple(l1)
+print(id(l1))
+print(id(l3))
+
+print(l1 == l2)
+print(l1 is l2)
+print(l1 == l3)
+print(l1 is l3)
+
+
+---------------
+set: 
+Mathematical Set: 
+No Duplicates
+No Indexing
+No Slicing, Step Operator 
+Set Objects are mutable. 
+
+s = {} #dictionary
+s = set()
+s = {'abcd',123, True, 5.2}
+
+s = set(range(1,6))
+print(s)
+
+l = [10,20,30,10,20]
+print(set(l))
+
+t = (10,10,20,30,20)
+print(set(t))
+
+-----------------
+Mathematical Operations: 
+union, intersection, difference
+
+s1 = {10,20,30,40}
+s2 = {30,40,70,80}
+print(s1.union(s2))
+print(s1 | s2)
+
+print(s1.intersection(s2))
+print(s1 & s2)
+
+print(s1.difference(s2))
+print(s1 - s2)
+
+print(s1.symmetric_difference(s2))
+print(s1 ^ s2)
+
+--------------
+Membership Operators: in, not in 
+s1 = {10,20,30,40}
+print(20 in s1)
+print(200 in s1)
+print(20 not in s1)
+print(200 not in s1)
+-----------
+#Adding elements to set: 
+s = {'Hi', True, 5)
+s.add(200)
+print(s)
+
+#Removing elements to set: 
+s.remove('Hi')
+print(s)
+
+#Arbitrary (Random) element is removed 
+print(s.pop())
+print(s)
+
+#clear
+s.clear()
+print(s)
+
+
+#Removing elements to set: 
+s = {'Hi', 10,20,True}
+
+s.remove('Hello')
+print(s)
+
+s.discard('Hello')
+print(s)
+
+set comprehension: 
+squares = {no**2 for no in range(6)}
+print(squares)
+
+squares = {no**2 for no in range(6) if no%2==0}
+print(squares)
+
+--------
+TASK:
+match1 = {'sanju', 'virat', 'thilak', 'pandya'}
+match2 = {'sanju', 'rohit', 'thilak', 'ashwin'}
+
+#Both match1 and match2
+#Either Match1 or Match2 only played Players list
+
+print(match1 & match2)
+print(match1 ^ match2)
+
+s1 = {10,20}
+s2 = {20,30}
+s3 = {30,40}
+result = s1.union(s2,s3)
+print(result)
+
+result = s1 | s2 | s3
+print(result)
+
+Task: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
