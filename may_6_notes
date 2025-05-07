@@ -1,0 +1,324 @@
+tel = {'jack': 4098, 'sape': 4139}
+tel['guido'] = 4127
+tel['guido'] = 4127
+print(tel)
+tel['guido'] = 4199
+print(tel)
+
+print(tel['jack'])
+
+del tel['sape']
+tel['irv'] = 4127
+print(tel)
+
+print(list(tel))
+
+print(sorted(tel))
+-----------
+empty_dict = {}
+
+employee = {'name':'raja','exp':5, 'city':'chennai'}
+print(employee)
+
+empty_dict = {}
+
+employee = {'name':'raja','exp':5, 'city':'chennai'}
+print(employee)
+
+print(employee['name'])
+employee['name'] = 'bala'
+print(employee)
+
+----------------------------
+print(employee['age'])
+
+print(employee.get('age'))
+
+empty_dict = {}
+
+employee = {'name':'raja','exp':5, 'city':'chennai'}
+
+print(employee.keys())
+
+print(employee.values())
+
+print(employee.items())
+
+
+print(list(employee.keys()))
+print(list(employee.values()))
+print(list(employee.items()))
+---------
+employee1 = {'name':'raja','exp':5, 'city':'chennai'}
+employee2 = {'name':'bala','exp':7, 'city':'madurai'}
+
+employee3 = {1:employee1, 2:employee2}
+
+print(list(employee3.keys()))
+print(tuple(employee3.keys()))
+----------------
+employee = {'name':'raja','dept':'it','city':'chennai'}
+
+print(employee.items())
+
+for each_item in employee.items():
+    print(each_item)
+---------------
+for k in employee.keys():
+    print(k)
+
+for value in employee.values():
+    print(value)
+
+for k,v in employee.items():
+    print(k, v)
+
+for each_item in employee.items():
+    print(type(each_item))
+
+employee = {'name':'raja','dept':'it','city':'chennai'}
+empty_dict = {}
+empty_dict.update(employee)
+print(empty_dict)
+
+--------
+employee = {'name':'raja','dept':'it','city':'chennai'}
+empty_dict = {}
+empty_dict.update(employee)
+print(empty_dict.popitem())
+print(empty_dict)
+
+
+empty_dict.update(employee)
+
+print(empty_dict.pop('dept'))
+print(empty_dict)
+print(empty_dict.pop('empId'))
+print(empty_dict.pop('empId','Data is not present'))
+print(empty_dict)
+print(empty_dict.get('empId','Data is not present'))
+print(empty_dict.get('name','Data is not present'))
+print(empty_dict.get('empId','Data is not present'))
+
+empty_dict.clear()
+print(empty_dict)
+
+empty_dict = employee.copy()
+print(empty_dict)
+
+-------------
+person = {'name':'kathir', 'age':12, 'indian':True}
+print(person)
+person.setdefault('city':'erode')
+print(person)
+person.setdefault('name':'raja')
+print(person)
+-----------------
+person = {'name':'kathir', 'age':12, 'indian':True}
+print(person)
+person.setdefault('city','erode')
+print(person)
+person.setdefault('name','raja')
+print(person)
+
+------------------
+keys = ["name","age", "nationality"]
+default_value = "not known"
+
+new_dict = dict.fromkeys(keys, default_value)
+print(new_dict)
+
+#fromkeys(iterable, value)
+-----------------------
+fruits_dict = {'apple':100, 'banana':80, 'grapes':70}
+
+# Print key and value 
+# Key length: 5 --> value
+#key --> starts with vowels, print value
+#values --> 10% Increment
+
+fruits_dict = {'apple':100, 'banana':80, 'grapes':70}
+for k,v in fruits_dict.items():
+    print(k,v)
+    if len(k)==5:
+        print("The value is ",v)
+    if k[0].lower() in 'aeiou':
+        print("Key start with vowel is ",v)
+
+for k in  fruits_dict:
+     fruits_dict[k]+=fruits_dict[k]*0.1
+print(fruits_dict)
+--------------
+students_dict = {'kathir':101, 'viyan':102,'mathi':103}
+
+#Convert keys to values, and values to keys
+
+swapped_dict ={}
+for key in students_dict:
+    val = students_dict[key]
+    swapped_dict[val]  = key
+print(swapped_dict)
+
+for key, value in students_fact.items():
+    swapped_dict[value] = key
+print(swapped_dict)
+
+Dictionary comprehension: 
+students_dict = {'kathir':101, 'viyan':102,'mathi':103}
+swapped_dict = {}
+for key, value in students_fact.items():
+    swapped_dict[value] = key
+
+students_dict = {'kathir':101, 'viyan':102,'mathi':103}
+swapped_dict = {}
+for key, value in students_dict.items():
+    swapped_dict[value] = key
+
+students_dict = {'kathir':101, 'viyan':102,'mathi':103}
+swapped_dict = {}
+for key, value in students_dict.items():
+    swapped_dict[value] = key
+
+#Dictionary Comprehension
+swapped_dict = {key: value for key, value in students_dict.items()}
+print(swapped_dict)
+
+swapped_dict = {value: key for key, value in students_dict.items()}
+print(swapped_dict)
+-------------
+players = {'virat':90, 'rohit':56, 'bumra':78}
+#total 
+
+players = {'virat':90, 'rohit':56, 'bumra':78}
+#total 
+total = 0
+for v in players.values():
+    total = total + v
+
+print(total)
+
+#Highest scorer
+#Highest scorer
+highest  = 0
+
+for k,v in players.items():
+    if(highest <= v):
+        highest = v
+        scorer = k
+else:
+    print(scorer)
+
+-------------
+students_dict = {'kathir':101, 'viyan':102,'mathi':103}
+
+swapped_dict = {value: key for key, value in students_dict.items()}
+print(swapped_dict)
+
+print({k:v for k, v in swapped_dict.items() if v !='viyan'})
+
+#Confirm if all keys are same between two dictionaries: 
+students_dict1 = {'kathir':101, 'viyan':102,'mathi':103}
+students_dict2 = {'kathir':101, 'mathi':102,'viyan':103}
+
+print(students_dict1.values())
+print(set(students_dict1.keys()))
+print(set(students_dict2.keys()))
+print(set(students_dict1.keys()) == set(students_dict2.keys()))
+
+---------
+#Find Common keys between two Dictionaries
+students_dict1 = {'bala':101, 'viyan':102,'mathi':103}
+students_dict2 = {'kathir':101, 'mathi':102,'kumar':103}
+
+print(students_dict1.values())
+print(set(students_dict1.keys()))
+print(set(students_dict2.keys()))
+print(set(students_dict1.keys()) & set(students_dict2.keys()))
+
+---------------
+
+Task: 
+#Frequency of each letter in a given word
+name = input("Enter name") #delllaptop
+d = {}
+for letter in name: 
+    d[letter] = d.get(letter,0) + 1
+
+print(d)
+
+#Frequency of each word in a given sentence
+"A rose is a rose is a rose"
+
+#Sorting based on values: 
+score_board = {'virat':78, 'dhoni':87, 'rohit':45}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
