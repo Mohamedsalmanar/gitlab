@@ -1,0 +1,16 @@
+tel = {'jack': 4098, 'sape': 4139}
+tel['guido'] = 4127
+tel['guido'] = 4127
+print(tel)
+tel['guido'] = 4199
+print(tel)
+
+print(tel['jack'])
+
+del tel['sape']
+tel['irv'] = 4127
+print(tel)
+
+print(list(tel))
+
+print(sorted(tel))
