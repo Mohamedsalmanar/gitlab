@@ -1,0 +1,229 @@
+Object Oriented Programming: 
+
+Multiparadigm Programming Language: 
+
+Paradigm - Idea கருத்துரு
+
+Machine Language - Assembly Language  - Compiled Language
+Procedure Oriented Programming Language
+Object Oriented Programming: 
+
+Object: 
+Class: 
+
+Object: Real Time Entity, Real Life Entity, Physical Entity
+
+Object: Pen, Book, Browser, Plate, Stove
+Combination of States and Behaviours: 
+
+Pen: Hero, 50, Blue, Refillable, Nib, Green, Golden
+Structure 
+Write, Erase, fill, close, open, change  - Behaviours
+
+Class: Blue Print / Template: 
+Class contains Fields (Variables) and Functions
+
+Logical Entity: 
+
+Laptop: Hospital: School: Bank: Office: Bike
+
+
+Class: Object: 
+Object is a representation of class. 
+Object represents class. 
+Object is an instance of class. 
+
+
+Bike - Splendor, Activa, 
+Laptop: HP, Lenovo, Dell, Acer
+
+We cannot create objects without class. 
+Class can be present without objects. 
+
+OOP: Code Reusability, Maintainability
+
+from PIL import Image
+im = Image.open("abcd.jpeg")
+im.show()
+print(im.format, im.size, im.mode)
+# JPEG (1920, 1357) RGB
+
+sudo apt install python3-PIL
+
+pip3 install PIL
+
+sudo apt install python3-matplotlib
+
+import matplotlib.pyplot as plt
+plt.plot([1,2,3,4])
+plt.show()
+
+import matplotlib.pyplot as plt
+plt.plot([1,4,9,16])
+plt.show()
+
+
+import matplotlib.pyplot as plt
+x = [1,2,3]
+y = [5,7,4]
+x2 = [1,2,3]
+y2 = [10,14,12]
+plt.plot(x, y, label='Line 1')
+plt.plot(x2, y2, label='Line 2')
+plt.xlabel('X-Axis')
+plt.ylabel('Y-Axis')
+plt.title('LINE GRAPH')
+plt.legend()
+plt.show()
+
+--------------
+import matplotlib.pyplot as plt
+years = [2014, 2015, 2016, 2017, 2018]
+total_populations = [8939007, 8954518, 8960387, 8956741, 8943721]
+plt.plot (years, total_populations)
+plt.title ("Year vs Population in India")
+plt.xlabel ("Year")
+plt.ylabel ("Total Population")
+plt.show()
+--
+import matplotlib.pyplot as plt
+print(plt.style.available)
+years = [2014, 2015, 2016, 2017, 2018]
+total_populations = [8939007, 8954518, 8960387, 8956741, 8943721]
+plt.plot(years, total_populations, linewidth=3)
+plt.title("Year vs Population in India")
+plt.xlabel("Year")
+plt.ylabel("Total Population")
+plt.show()
+
+import matplotlib.pyplot as plt
+print(plt.style.available)
+plt.style.use('classic')
+years = [2014, 2015, 2016, 2017, 2018]
+total_populations = [8939007, 8954518, 8960387, 8956741, 8943721]
+plt.plot (years, total_populations, linewidth=3)
+plt.title ("Year vs Population in India")
+plt.xlabel ("Year")
+plt.ylabel ("Total Population")
+plt.show()
+
+--------
+import matplotlib.pyplot as plt
+
+img, ax = plt.subplots()
+ax.scatter(2,4)
+plt.show()
+-----------------
+import matplotlib.pyplot as plt
+x_axis_values = [1,2,3,4,5]
+y_axis_values = [1,4,9,16,25]
+img, ax = plt.subplots()
+ax.scatter(x_axis_values,y_axis_values)
+plt.show()
+--------------
+import matplotlib.pyplot as plt
+
+x_axis_values = range(1,6)
+y_axis_values = [x**2 for x in range(1,6)]
+img, ax = plt.subplots()
+ax.scatter(x_axis_values,y_axis_values)
+plt.show()
+-------------
+import matplotlib.pyplot as plt
+
+x_axis_values = range(1,1001)
+y_axis_values = [x**2 for x in range(1,1001)]
+img, ax = plt.subplots()
+ax.scatter(x_axis_values,y_axis_values,s=10)
+ax.axis([0,1100,0,1100000])
+plt.show()
+-----------
+import matplotlib.pyplot as plt
+# Our data
+labels = ["TAMIL", "ENGLISH", "MATHS", "PHYSICS", "CHEMISTRY", "CS"]
+usage = [79.8, 67.3, 77.8, 68.4, 70.2, 88.5]
+# Generating the y positions. Later, we'll use them to replace them with labels.
+y_positions = range(len(labels))
+# Creating our bar plot
+plt.bar(y_positions, usage)
+plt.xticks(y_positions, labels)
+plt.ylabel("RANGE")
+plt.title("MARKS")
+plt.show()
+----------------
+import matplotlib.pyplot as plt
+# Our data
+labels = ["TAMIL", "ENGLISH", "MATHS", "PHYSICS", "CHEMISTRY", "CS"]
+usage = [79.8, 67.3, 77.8, 68.4, 70.2, 88.5]
+# Generating the y positions. Later, we'll use them to replace them with labels.
+y_positions = range (len(labels))
+# Creating our bar plot
+plt.bar(y_positions, usage)
+plt.xticks(y_positions, labels)
+plt.ylabel("RANGE")
+plt.title("MARKS")
+plt.savefig('marks.png')
+plt.show()
+
+--------------
+sales.csv:
+Years,Sales
+2020,10000
+2021,11234
+2022,12345
+2023,12555
+2024,13000
+
+import matplotlib.pyplot as plt
+import csv
+
+
+years = []
+sales = []
+
+#Reading CSV file:
+with open("sales.csv","r") as f:
+    reader = csv.reader(f)
+    next(reader)
+    for each_row in reader:
+        years.append(int(each_row[0]))
+        sales.append(int(each_row[1]))
+
+print(years)
+print(sales)
+    
+plt.figure(figsize=(7,5))
+plt.plot(years, sales,color='r',label="Yearly Sales ")
+plt.xlabel("Year")
+plt.ylabel("Sales")
+plt.title("Sales for last 5 years ")
+plt.grid(True)
+plt.show()
+
+
+----------------
+
+
+----------------
+
+import matplotlib.pyplot as plt
+import csv
+
+
+years = []
+sales = []
+
+#Reading CSV file:
+with open("sales.csv","r") as f:
+    reader = csv.reader(f)
+    next(reader)
+    for each_row in reader:
+        years.append(int(each_row[0]))
+        sales.append(int(each_row[1]))
+
+print(years)
+print(sales)
+    
+-------------------
+
+
