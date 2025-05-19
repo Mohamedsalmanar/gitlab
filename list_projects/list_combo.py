@@ -19,3 +19,6 @@ print(l4)
 #Same using List comprehension
 l4 = [(num1,num2) for num1 in l1 for num2 in l2 if num1!=num2] 
 print(l4)
+
+l3 = list(zip(*l3))
+print(l3)
