@@ -1,0 +1,168 @@
+Day 1: 
+Installation: 
+pip install django
+sudo apt install python3-pip 
+
+To Check Version: 
+python3 -m django --version
+
+Django Project: 
+    Collection of Applications and configurations 
+Eg. Banking Project 
+
+Django Application: 
+    To perform a particular task in Django project. 
+Eg. Loan, Credit, Debit
+
+How To Create Django Project: 
+
+django-admin startproject first
+
+# first - project name 
+
+__init__.py: 
+Special file name, Django will treat this folder as python package. 
+
+settings.py: 
+All project settings and Configurations including installed applications, middleware configurations, db configurations,etc. 
+
+urls.py: 
+All url patterns of our project. 
+
+
+wsgi.py: 
+Web Server Gateway Interface. 
+We can use this file while deploying our application in Production. 
+
+asgi.py: 
+Asynchronous Server Gateway Interface. 
+
+manage.py: 
+Command Line Utility to interact with Django project including Running Development Server, Running Tests, Creating Migrations
+
+
+Now, go to the location where you have manage.py. 
+
+python3 manage.py runserver 
+
+After executing this line, db.sqlite3 file will be created in our project folder. 
+
+Now, our project is ready.  Next step is, Creating Web Applications in our project.  
+
+HOW TO CREATE FIRST Web Application: 
+
+python3 manage.py startapp firstApp
+
+firstApp - is our application name. 
+
+Now, firstApp folder will be created in our project folder. 
+
+admin.py: 
+We can register our models in this file.  Django will use these models with Django's admin interface. 
+
+apps.py: 
+for adding Application specific Configurations. 
+
+models.py: 
+Application's data model.
+
+tests.py: 
+Test Functions to test our code. 
+
+views.py: 
+Functions which handle requests and return responses will be saved here. 
+
+Migrations folder: 
+Stores DB related info. needed for Models. 
+----
+We have created our Applications.  
+
+Step 1: 
+Add our application in settings.py.  Thus, Django will know about our application. 
+
+settings.py: 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'firstApp'
+]
+
+Step 2: 
+Create a view for our application in views.py. 
+
+Note: There are two types of Views. 
+    1. Function Based Views. 
+    2. Class based Views 
+
+Now, we are going to use Function Based Views. 
+
+Function Based Views: 
+For every view, we should have one function.  
+
+views.py: 
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Create your views here.
+def display(request):
+    view_content = '<h2> Welcome to Django </h2>'
+    return HttpResponse(view_content)
+
+Step 3: 
+Now, we have added a view.  End user should see this view by giving a URL.  Hence, the next step is - creating URL for it. 
+
+For Function based Views: 
+    1. Add an import: 
+        from firstApp import views
+    2. Add a URL in urlpatterns.
+
+urls.py: 
+
+from django.contrib import admin
+from django.urls import path
+from firstApp import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('hello/',views.display),
+]
+
+Step 4: 
+Now start server and send request. 
+python3 manage.py runserver
+
+In Browser: http://127.0.0.1:8000/hello
+
+Steps: 
+-----
+1) Create Django Project
+django-admin startproject firstProject
+
+2) Create Application in our project
+python3 manage.py startapp firstApp
+
+3) Add our Application to the project in settings.py [INSTALLED_APPS]
+
+4) Define view function inside views.py
+
+5) Define url-pattern for our view in urls.py
+
+6) Start Server
+python3 manage.py runserver
+
+7) Send the request in browser. 
+
+Q: Shall we change default port 8000 to anyother number?
+A: Yes, easily. 
+
+python3 manage.py runserver 8001
+
+TASKS: 
+1. Create a Django Application to display Hello World Message as response
+2. Create One Django Application with multiple views 
+2. Create a Django Application to display Current Date and Time. 
