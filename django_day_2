@@ -1,0 +1,82 @@
+import datetime
+
+# Create your views here.
+
+def time_info_view(request):
+    time = datetime.datetime.now()
+    output = '<h1> Currently the time is ' + str(time) + '</h1>'
+    return HttpResponse(output)
+
+--------------------
+
+Single Project with Multiple Applications. 
+
+1) Creation of Project: 
+django-admin startproject multiProject
+
+2) Creation of Applications - One, Two 
+cd multiProject
+python3 manage.py startapp One
+python3 manage.py startapp Two
+
+3) Adding These two applications to Project: 
+   - Open settings.py - INSTALLED_APPS - 'One','Two'
+
+4) Create Views for these two applications in their respective views.py file. 
+    Eg. 
+from django.http import HttpResponse
+import datetime
+
+# Create your views here.
+
+def time_info_view(request):
+    time = datetime.datetime.now()
+    output = '<h1> Currently in Application 2, the time is ' + str(time) + '</h1>'
+    return HttpResponse(output)
+
+5) Add these views in urls.py 
+from one import views
+from two import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('time/', views.time_info_view),
+    path('time2/', views.time_info_view)
+]
+Ambiguity: 
+Here comes the ambiguity.  Observe the above urlspatterns.  It is not clear that which times_info_view function from which urlpattern will be called. 
+
+Solution: 
+Approach #1: 
+
+urls.py: 
+--------------
+from one.views import time_info_view
+from two.views import time_info_view2
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('time/', time_info_view),
+    path('time2/', time_info_view2)
+]
+        
+6) Now run the server.  
+python3 manage.py runserver
+
+Approach #2: 
+
+urls.py: 
+-------
+from one import views as v1
+from two import views as v2
+
+    path('admin/', admin.site.urls),
+    path('time/', v1.time_info_view),
+    path('time2/', v2.time_info_view2)
+]
+
+How to Change Time Zone to IST: 
+settings.py: 
+-----------
+TIME_ZONE =  'Asia/Kolkata'
+
