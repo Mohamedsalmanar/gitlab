@@ -1,0 +1,101 @@
+DJANGO TEMPLATES AND STATIC FILES: 
+----------------------------------
+It is not advisable or recommended to write HTML Code inside Python script.  i.e., inside views.py 
+
+Reasons: 
+    1. It reduces readability
+    2. No Separation of Roles
+    3. It affects Reusability of Design Code. 
+
+Solution: 
+Create a separate HTML file. This HTML file is known as Template. Place this HTML File in Project Level. Thus, we can make use of this, for Multiple Applications. 
+
+Recall: 
+1) To know the current Python file name: 
+print(__file__) 
+
+2) To know absolute path of Current file name: 
+import os
+print(os.path.abspath(__file__))
+
+3) To know base directory name of the Current File: 
+print(os.path.dirname(os.path.abspath(__file__)))
+
+4) Now Create one folder called 'templates' in Project Folder. 
+To know its absolute path: 
+    import os
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+    print(TEMPLATE_DIR)
+
+
+Template Based Application: 
+--------------------------
+
+1) django-admin startproject templateProject
+2) cd templateProject/
+3) python3 manage.py startapp template_App
+4) Add this application to Project.  [settings.py -> INSTALLED_APPS]
+5) Create 'templates' folder in Project folder. 
+6) Inside 'templates' folder, we shall create another folder 'template_App'. 
+7) Add this templates folder to settings.py.  Thus, Django will get to know about our templates. 
+
+TEMPLATES = [
+    {
+        ...
+        'DIRS': [],
+       ...
+]
+
+'DIRS' = ['/home/muthu/Documents/Java/djangoprojects/templateProject/templates']
+
+Note: Hard coding locations as above is not recommended approach.  Recall the 'Recall' section.  
+
+settings.py: 
+
+import os 
+
+
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
+8) Specify this TEMPLATE_DIR in settings.py (Under TEMPLATES)
+ 'DIRS': [TEMPLATE_DIR,]
+
+9) Now, create a HTML file inside templates/template_App folder.  
+
+index.html: 
+----------
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<h1 style="color:red;"> Welcome to Django Templates </h1>
+</body>
+</html>
+
+10) Now, we shall define Function based view in views.py file. 
+
+from django.shortcuts import render
+
+# Create your views here.
+def display(request):
+    return render(request, 'template_App/index.html')
+
+11)  Define URL Pattern in urls.py file 
+
+from template_App import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('hello/', views.display)
+]
+
+12) Now run django server. 
+python3 manage.py runserver
+
+TASK: 
+1) Add <style> tag in your existing index.html file and check if Styling is applied there. 
+2) Try to add an Image in your existing index.html file and check if image gets displayed. 
+
+
