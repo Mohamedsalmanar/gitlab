@@ -1,0 +1,150 @@
+TEMPLATE TAGS: 
+-------------
+For injecting dynamic contents to the template file (i.e., HTML), Template Tags are used. 
+
+views.py: 
+-------
+
+from django.shortcuts import render
+import datetime
+def display(request): 
+    date = datetime.datetime.now()
+    dict_sample = {'current_date':date}
+    return render(request, 'template_App/index.html',context=dict_sample)
+
+In index.html file, add {{current_date}} 
+
+Note: Values to the template variables should be passed in dictionary form as argument. 
+
+Application to display Date, Time and Employee Information as Template: 
+
+views.py: 
+--------
+
+from django.shortcuts import render
+import datetime
+def display(request): 
+    date = datetime.datetime.now()
+    name = 'Kathir'
+    empNo = 1234
+    dict_sample = {'empName':name, 'empId':empNo, 'current_date':date}
+    return render(request, 'template_App/index.html',context=dict_sample)
+
+index.html: 
+-----------
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<h1 style="color:red"> Welcome to Django Templates {{current_date}} </h1>
+<h1 style="color:red"> <pre>{{empName}}      {{empId}} </pre> </h1>
+</body>
+</html>
+
+
+--------------
+TIME BASED THEMED HOME PAGE - Application: 
+
+views.py: 
+--------
+
+from django.shortcuts import render
+import datetime
+
+def display(request):
+    current_hour = datetime.datetime.now().hour
+    print(current_hour)
+    if 5 <= int(current_hour) < 12:
+        greeting = "Good Morning"
+        bg_color = "#FFDDC1"  # Light Orange
+    elif 12 <= int(current_hour) < 18:
+        greeting = "Good Afternoon"
+        bg_color = "#FFC857"  # Soft Yellow
+    elif 18 <= int(current_hour) < 21:
+        greeting = "Good Evening"
+        bg_color = "#4B6584"  # Soft Blue
+    else:
+        greeting = "Good Night"
+        bg_color = "#2D4059"  # Dark Blue
+
+    context = {
+        'greeting': greeting,
+        'bg_color': bg_color
+    }
+
+    return render(request, 'template_App/index.html', context)
+
+-----------------------
+
+index.html: 
+----------
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time-Based Themed Homepage</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: {{ bg_color }};
+            color: #fff;
+        }
+        h1 {
+            font-size: 3em;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ greeting }}</h1>
+</body>
+</html>
+---------------------------------------
+
+
+ADDING CSS FILES and IMAGES: 
+----------------
+1) Create a folder 'static' inside Main Project folder. 
+2) Inside 'static' folder, create 'images' folder to place images there. 
+3) Now, add static directory path in settings.py file.  
+
+settings.py:
+-----------
+
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+Make sure images are shown properly. 
+
+http://127.0.0.1:8000/static/images/1.jpeg
+
+index.html: 
+-----------
+Add {% load static %} after / before <html> tag in your html file 
+Add <img src = "{%static "images/1.jpeg" %}"> inside body tag. 
+
+ADDING CSS FILE: 
+---------------
+1) Create a folder 'css' inside static 
+2) Place style.css file in newly created 'css' folder. 
+3) Cut <style> tag content from HTML File and paste it here. 
+body
+{
+font-family: Arial, sans-serif;
+color: red;
+}
+4) Add 
+<link rel="stylesheet" href="{%static "css/style.css" %}"> to your html file. 
+
+---------------
+TASK: 
+IMAGE SLIDER: 
+Profile Website using DJango
+Profile Website using Django with JS
