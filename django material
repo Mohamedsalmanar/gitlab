@@ -1,0 +1,1610 @@
+Day 1: 
+Installation: 
+pip install django
+sudo apt install python3-pip 
+
+To Check Version: 
+python3 -m django --version
+
+Django Project: 
+    Collection of Applications and configurations 
+Eg. Banking Project 
+
+Django Application: 
+    To perform a particular task in Django project. 
+Eg. Loan, Credit, Debit
+
+How To Create Django Project: 
+
+django-admin startproject first
+
+# first - project name 
+
+__init__.py: 
+Special file name, Django will treat this folder as python package. 
+
+settings.py: 
+All project settings and Configurations including installed applications, middleware configurations, db configurations,etc. 
+
+urls.py: 
+All url patterns of our project. 
+
+
+wsgi.py: 
+Web Server Gateway Interface. 
+We can use this file while deploying our application in Production. 
+
+asgi.py: 
+Asynchronous Server Gateway Interface. 
+
+manage.py: 
+Command Line Utility to interact with Django project including Running Development Server, Running Tests, Creating Migrations
+
+
+Now, go to the location where you have manage.py. 
+
+python3 manage.py runserver 
+
+After executing this line, db.sqlite3 file will be created in our project folder. 
+
+Now, our project is ready.  Next step is, Creating Web Applications in our project.  
+
+HOW TO CREATE FIRST Web Application: 
+
+python3 manage.py startapp firstApp
+
+firstApp - is our application name. 
+
+Now, firstApp folder will be created in our project folder. 
+
+admin.py: 
+We can register our models in this file.  Django will use these models with Django's admin interface. 
+
+apps.py: 
+for adding Application specific Configurations. 
+
+models.py: 
+Application's data model.
+
+tests.py: 
+Test Functions to test our code. 
+
+views.py: 
+Functions which handle requests and return responses will be saved here. 
+
+Migrations folder: 
+Stores DB related info. needed for Models. 
+----
+We have created our Applications.  
+
+Step 1: 
+Add our application in settings.py.  Thus, Django will know about our application. 
+
+settings.py: 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'firstApp'
+]
+
+Step 2: 
+Create a view for our application in views.py. 
+
+Note: There are two types of Views. 
+    1. Function Based Views. 
+    2. Class based Views 
+
+Now, we are going to use Function Based Views. 
+
+Function Based Views: 
+For every view, we should have one function.  
+
+views.py: 
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Create your views here.
+def display(request):
+    view_content = '<h2> Welcome to Django </h2>'
+    return HttpResponse(view_content)
+
+Step 3: 
+Now, we have added a view.  End user should see this view by giving a URL.  Hence, the next step is - creating URL for it. 
+
+For Function based Views: 
+    1. Add an import: 
+        from firstApp import views
+    2. Add a URL in urlpatterns.
+
+urls.py: 
+
+from django.contrib import admin
+from django.urls import path
+from firstApp import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('hello/',views.display),
+]
+
+Step 4: 
+Now start server and send request. 
+python3 manage.py runserver
+
+In Browser: http://127.0.0.1:8000/hello
+
+Steps: 
+-----
+1) Create Django Project
+django-admin startproject firstProject
+
+2) Create Application in our project
+python3 manage.py startapp firstApp
+
+3) Add our Application to the project in settings.py [INSTALLED_APPS]
+
+4) Define view function inside views.py
+
+5) Define url-pattern for our view in urls.py
+
+6) Start Server
+python3 manage.py runserver
+
+7) Send the request in browser. 
+
+Q: Shall we change default port 8000 to anyother number?
+A: Yes, easily. 
+
+python3 manage.py runserver 8001
+
+TASKS: 
+1. Create a Django Application to display Hello World Message as response
+2. Create One Django Application with multiple views 
+2. Create a Django Application to display Current Date and Time. 
+
+Note: Add below content for displaying time. 
+
+import datetime
+
+# Create your views here.
+
+def time_info_view(request):
+    time = datetime.datetime.now()
+    output = '<h1> Currently the time is ' + str(time) + '</h1>'
+    return HttpResponse(output)
+
+--------------------
+
+Single Project with Multiple Applications. 
+
+1) Creation of Project: 
+django-admin startproject multiProject
+
+2) Creation of Applications - One, Two 
+cd multiProject
+python3 manage.py startapp One
+python3 manage.py startapp Two
+
+3) Adding These two applications to Project: 
+   - Open settings.py - INSTALLED_APPS - 'One','Two'
+
+4) Create Views for these two applications in their respective views.py file. 
+    Eg. 
+from django.http import HttpResponse
+import datetime
+
+# Create your views here.
+
+def time_info_view(request):
+    time = datetime.datetime.now()
+    output = '<h1> Currently in Application 2, the time is ' + str(time) + '</h1>'
+    return HttpResponse(output)
+
+5) Add these views in urls.py 
+from one import views
+from two import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('time/', views.time_info_view),
+    path('time2/', views.time_info_view)
+]
+Ambiguity: 
+Here comes the ambiguity.  Observe the above urlspatterns.  It is not clear that which times_info_view function from which urlpattern will be called. 
+
+Solution: 
+Approach #1: 
+
+urls.py: 
+--------------
+from one.views import time_info_view
+from two.views import time_info_view2
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('time/', time_info_view),
+    path('time2/', time_info_view2)
+]
+        
+6) Now run the server.  
+python3 manage.py runserver
+
+Approach #2: 
+
+urls.py: 
+-------
+from one import views as v1
+from two import views as v2
+
+    path('admin/', admin.site.urls),
+    path('time/', v1.time_info_view),
+    path('time2/', v2.time_info_view2)
+]
+
+How to Change Time Zone to IST: 
+settings.py: 
+-----------
+TIME_ZONE =  'Asia/Kolkata'
+
+     
+DJANGO TEMPLATES AND STATIC FILES: 
+----------------------------------
+It is not advisable or recommended to write HTML Code inside Python script.  i.e., inside views.py 
+
+Reasons: 
+    1. It reduces readability
+    2. No Separation of Roles
+    3. It affects Reusability of Design Code. 
+
+Solution: 
+Create a separate HTML file. This HTML file is known as Template. Place this HTML File in Project Level. Thus, we can make use of this, for Multiple Applications. 
+
+Recall: 
+1) To know the current Python file name: 
+print(__file__) 
+
+2) To know absolute path of Current file name: 
+import os
+print(os.path.abspath(__file__))
+
+3) To know base directory name of the Current File: 
+print(os.path.dirname(os.path.abspath(__file__)))
+
+4) Now Create one folder called 'templates' in Project Folder. 
+To know its absolute path: 
+    import os
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+    print(TEMPLATE_DIR)
+
+
+Template Based Application: 
+--------------------------
+
+1) django-admin startproject templateProject
+2) cd templateProject/
+3) python3 manage.py startapp template_App
+4) Add this application to Project.  [settings.py -> INSTALLED_APPS]
+5) Create 'templates' folder in Project folder. 
+6) Inside 'templates' folder, we shall create another folder 'template_App'. 
+7) Add this templates folder to settings.py.  Thus, Django will get to know about our templates. 
+
+TEMPLATES = [
+    {
+        ...
+        'DIRS': [],
+       ...
+]
+
+'DIRS' = ['/home/muthu/Documents/Java/djangoprojects/templateProject/templates']
+
+Note: Hard coding locations as above is not recommended approach.  Recall the 'Recall' section.  
+
+settings.py: 
+
+import os 
+
+
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
+8) Specify this TEMPLATE_DIR in settings.py (Under TEMPLATES)
+ 'DIRS': [TEMPLATE_DIR,]
+
+9) Now, create a HTML file inside templates/template_App folder.  
+
+index.html: 
+----------
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<h1 style="color:red;"> Welcome to Django Templates </h1>
+</body>
+</html>
+
+10) Now, we shall define Function based view in views.py file. 
+
+from django.shortcuts import render
+
+# Create your views here.
+def display(request):
+    return render(request, 'template_App/index.html')
+
+11)  Define URL Pattern in urls.py file 
+
+from template_App import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('hello/', views.display)
+]
+
+12) Now run django server. 
+python3 manage.py runserver
+
+TASK: 
+1) Add <style> tag in your existing index.html file and check if Styling is applied there. 
+2) Try to add an Image in your existing index.html file and check if image gets displayed. 
+
+
+
+TEMPLATE TAGS: 
+-------------
+For injecting dynamic contents to the template file (i.e., HTML), Template Tags are used. 
+
+views.py: 
+-------
+
+from django.shortcuts import render
+import datetime
+def display(request): 
+    date = datetime.datetime.now()
+    dict_sample = {'current_date':date}
+    return render(request, 'template_App/index.html',context=dict_sample)
+
+In index.html file, add {{current_date}} 
+
+Note: Values to the template variables should be passed in dictionary form as argument. 
+
+Application to display Date, Time and Employee Information as Template: 
+
+views.py: 
+--------
+
+from django.shortcuts import render
+import datetime
+def display(request): 
+    date = datetime.datetime.now()
+    name = 'Kathir'
+    empNo = 1234
+    dict_sample = {'empName':name, 'empId':empNo, 'current_date':date}
+    return render(request, 'template_App/index.html',context=dict_sample)
+
+index.html: 
+-----------
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<h1 style="color:red"> Welcome to Django Templates {{current_date}} </h1>
+<h1 style="color:red"> <pre>{{empName}}      {{empId}} </pre> </h1>
+</body>
+</html>
+
+
+--------------
+TIME BASED THEMED HOME PAGE - Application: 
+
+views.py: 
+--------
+
+from django.shortcuts import render
+import datetime
+
+def display(request):
+    current_hour = datetime.datetime.now().hour
+    print(current_hour)
+    if 5 <= int(current_hour) < 12:
+        greeting = "Good Morning"
+        bg_color = "#FFDDC1"  # Light Orange
+    elif 12 <= int(current_hour) < 18:
+        greeting = "Good Afternoon"
+        bg_color = "#FFC857"  # Soft Yellow
+    elif 18 <= int(current_hour) < 21:
+        greeting = "Good Evening"
+        bg_color = "#4B6584"  # Soft Blue
+    else:
+        greeting = "Good Night"
+        bg_color = "#2D4059"  # Dark Blue
+
+    context = {
+        'greeting': greeting,
+        'bg_color': bg_color
+    }
+
+    return render(request, 'template_App/index.html', context)
+
+-----------------------
+
+index.html: 
+----------
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time-Based Themed Homepage</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: {{ bg_color }};
+            color: #fff;
+        }
+        h1 {
+            font-size: 3em;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ greeting }}</h1>
+</body>
+</html>
+---------------------------------------
+
+
+ADDING CSS FILES and IMAGES: 
+----------------
+1) Create a folder 'static' inside Main Project folder. 
+2) Inside 'static' folder, create 'images' folder to place images there. 
+3) Now, add static directory path in settings.py file.  
+
+settings.py:
+-----------
+
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+Make sure images are shown properly. 
+
+http://127.0.0.1:8000/static/images/1.jpeg
+
+index.html: 
+-----------
+Add {% load static %} after / before <html> tag in your html file 
+Add <img src = "{%static "images/1.jpeg" %}"> inside body tag. 
+
+ADDING CSS FILE: 
+---------------
+1) Create a folder 'css' inside static 
+2) Place style.css file in newly created 'css' folder. 
+3) Cut <style> tag content from HTML File and paste it here. 
+body
+{
+font-family: Arial, sans-serif;
+color: red;
+}
+4) Add 
+<link rel="stylesheet" href="{%static "css/style.css" %}"> to your html file. 
+
+---------------
+TASK: 
+IMAGE SLIDER: 
+Profile Website using DJango
+Profile Website using Django with JS
+---------------------------
+
+MODELS And DATABASES: 
+--------------------
+Django provides Builtin DB: sqlite3. 
+
+In Settings.py, already sqlite3 is configured. 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+Note: If we want to have any other database, we have to configure them by providing below information. 
+
+1) ENGINE: Name of the DB Engine
+2) NAME:   DB Name
+3) USER:   DB Login Username
+4) PASSWORD: DB Login Password
+5) HOST: DB Server Host 
+6) PORT: DB Server Port no. 
+
+How to Check DJango DB Connection: 
+---------------------------------
+
+1) Go to Projects folder in Terminal 
+    python3 manage.py shell 
+2) Now type as below: 
+   >>> from django.db import connection
+   >>> con = connection.cursor()
+3) If No error message comes, DB is configured properly.  
+
+
+What is Model: 
+A Model is a Python class which contains DB Information. 
+A model is the single, definitive source of information about your data. It contains the essential fields and behaviors of the data you’re storing. Generally, each model maps to a single database table.
+
+Each model is a Python class that subclasses django.db.models.Model.
+
+Each attribute of the model represents a database field.
+    
+Model Project: 
+--------------
+1) Create a Django project. 
+django-admin startproject modelProject
+cd modelProject
+python3 manage.py startapp modelApp
+
+2) Open models.py file. (inside modelApp)
+
+class Student(models.Model):
+    sid = models.IntegerField()
+    sname = models.CharField(max_length=30)
+    smarks = models.FloatField()
+    saddr = models.CharField(max_length=30)
+
+This class will be created as a DB Table by Django automatically. 
+
+3) As usual, add your app in INSTALLED_APPS in settings.py file. 
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'modelApp',
+]
+
+4) To make this class to be a DB Table, type as below: 
+python3 manage.py makemigrations modelApp
+
+5) This will give you the below results: 
+Migrations for 'modelApp':
+  modelApp/migrations/0001_initial.py
+    - Create model Student
+
+6) Now, we can check 0001_initial.py file under /modelApp/migrations
+
+7) To see the generated SQL Code, Type as below in Terminal: 
+python3 manage.py sqlmigrate modelApp 0001
+
+BEGIN;
+--
+-- Create model Student
+--
+CREATE TABLE "modelApp_student" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "sid" integer NOT NULL, "sname" varchar(30) NOT NULL, "smarks" real NOT NULL, "saddr" varchar(30) NOT NULL);
+COMMIT;
+
+Note: 
+Django will create one column "id" to be maintained as Primary Key.  If we want to override its behaviour, we can create our own field with the same name "id". 
+
+8) migrate Command: 
+Now, execute the below line to execute the generated SQL Code. 
+python3 manage.py migrate
+
+Result would be as below: 
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, modelApp, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying modelApp.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+CHECKING TABLE IN DJANGO ADMIN INTERFACE: 
+----------------------------------------
+
+1) To check this table in Django's Admin Interface, we have to register our model class in admin.py file. 
+
+admin.py:
+----------
+from django.contrib import admin
+from modelApp.models import Student
+
+# Register your models here.
+
+admin.site.register(Student)
+
+2) To login to admin interface, create super user. 
+    python3 manage.py createsuperuser
+
+Username (leave blank to use 'muthu'): 
+Email address: 
+Password: 
+Password (again): 
+Error: Blank passwords aren't allowed.
+Password: 
+Password (again): 
+This password is too common.
+Bypass password validation and create user anyway? [y/N]: y
+Superuser created successfully.
+
+3) Now runserver. 
+    python3 manage.py runserver 8001
+
+4) In Browser, go to admin page: 
+    http://127.0.0.1:8001/admin/ 
+
+DISPLAYING DATA IN ADMIN INTERFACE: 
+models.py: 
+----------
+from django.db import models
+
+# Create your models here.
+
+class Student(models.Model):
+    sid = models.IntegerField()
+    sname = models.CharField(max_length=30)
+    smarks = models.FloatField()
+    saddr = models.CharField(max_length=30)
+
+admin.py: 
+---------
+from django.contrib import admin
+from modelApp.models import Student
+
+# Register your models here.
+
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ['sid','sname','smarks','saddr']
+
+admin.site.register(Student, StudentAdmin)
+-------------
+
+Now, Create 'templates' folder and 'static' folder 
+
+Inside 'templates' folder, dont forget to create 'modelApp' folder. 
+Inside 'static' folder, dont forget to create 'css' and 'images' folder. 
+Inside 'modelApp' folder, we should keep our html files. 
+
+views.py: 
+----------
+from django.shortcuts import render
+from modelApp.models import Student
+# Create your views here.
+def studentData(request):
+    #name = 'Muthu'
+    studentList = Student.objects.all()
+    #data_dict = {'student_list': name}
+    data_dict = {'student_list': studentList}
+    return render(request, 'modelApp/index.html', context=data_dict)
+
+-------
+index.html:
+----------
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time-Based Themed Homepage</title>
+<link rel="stylesheet" href="{%static "css/style.css" %}">
+</head>
+<body>
+   <h2> Student List </h2>
+    {% if student_list %}
+        <table>
+            <thead>
+                <th> SID </th>
+                <th> SNAME </th>
+                <th> SMARKS </th>
+                <th> SADDRESS </th>
+            </thead>
+    {% for student in student_list %}
+        <tr>
+            <td> {{student.sid}}</td>
+            <td> {{student.sname}}</td>
+            <td> {{student.smarks}}</td>
+            <td> {{student.saddr}}</td>
+        </tr>      
+    {% endfor %}
+        </table>
+    {%else%}
+        <h3> No Records Found </h3>
+    {% endif %}
+</body>
+</html>
+
+settings.py: 
+-----------
+import os
+
+BASE_DIR2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR = os.path.join(BASE_DIR2, 'templates')
+print(TEMPLATE_DIR)
+
+urls.py: 
+--------
+from django.contrib import admin
+from django.urls import path
+from modelApp import views 
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('empInfo', views.studentData),
+]
+
+Now, run the server :
+python3 manage.py runserver
+------------
+
+FAKER Module: 
+------------
+Install Faker Module in your machine first.  
+pip3 install Faker
+
+Create populate.py in Project Folder: 
+
+populate.py: 
+-----------
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'modelProject.settings')
+
+import django
+django.setup()
+from modelApp.models import * 
+from random import *
+from faker import Faker
+faker = Faker()
+print(faker.name())
+def populate(no):
+    for num in range(no):
+        fs_id = randint(1001,10000)
+        fs_name = faker.name()
+        fs_marks = randint(35,101)
+        fs_address = faker.city()
+        #models.py - match columns 
+        student_record = Student.objects.get_or_create(sid = fs_id, sname = fs_name, smarks=fs_marks, saddr=fs_address) 
+
+populate(10)
+-----
+Now, check if this works correctly. 
+    python3 populate.py
+
+After executing, confirm Faker produced data in your server. 
+    python3 manage.py runserver
+
+http://127.0.0.1:8000/admin/
+
+
+Now, change views.py as below to get all Faker Details to be displayed: 
+
+views.py:
+--------
+
+from django.shortcuts import render
+from modelApp.models import Student
+# Create your views here.
+def studentData(request):
+    #name = 'Muthu'
+    #data_dict = {'student_list': name}
+    studentList = Student.objects.all()
+    data_dict = {'student_list': studentList}
+    #data_dict = {'student_list': studentList}
+    return render(request, 'modelApp/index.html', context=data_dict)
+
+Check http://127.0.0.1:8000/studInfo
+
+
+Now, try below filters: 
+
+views.py: 
+---------
+from django.shortcuts import render
+from modelApp.models import Student
+# Create your views here.
+def studentData(request):
+    studentList = Student.objects.all()
+    #studentList = Student.objects.filter(sname__startswith='A')
+    #studentList = Student.objects.all().order_by('smarks')
+    #studentList = Student.objects.all().order_by('-smarks')
+    studentList = Student.objects.filter(smarks__lt=45)
+    data_dict = {'student_list': studentList}
+    #data_dict = {'student_list': studentList}
+    return render(request, 'modelApp/index.html', context=data_dict)
+
+
+-----------------------
+DJANGO FORMS: 
+* Important Concept in Web Development
+* Forms are useful for getting User Inputs
+* Note: These are DJango Forms, not HTML Forms
+
+WHY DJANGO Forms: 
+* Developing Forms in Python is easier
+* Generation of HTML Elements can be done quickly
+* Easy Data Validation
+* Connecting List, Set with Forms will be much more easier
+* Form based Models can be created easily.  
+
+
+STEPS: 
+
+1) Create Project
+django-admin startproject formProject
+
+2) Move to project folder 
+cd formProject
+
+3) Create Application now. 
+python3 manage.py startapp formApp
+
+4) Add our application in settings.py.  Thus, Django will know about our application. 
+
+settings.py:
+------------ 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'formApp'
+]
+
+5) Create 'templates' folder in Project folder. 
+6) Inside 'templates' folder, we shall create another folder 'form_App'. 
+7) Add this templates folder to settings.py.  Thus, Django will get to know about our templates. 
+
+TEMPLATES = [
+    {
+        ...
+        'DIRS': [],
+       ...
+]
+
+'DIRS' = ['/home/muthu/Documents/Java/djangoprojects/formProject/templates']
+
+Note: Hard coding locations as above is not recommended approach.  Recall the 'Recall' section.  
+
+settings.py: 
+
+import os 
+
+BASE_DIR2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR = os.path.join(BASE_DIR2, 'templates')
+
+8) Specify this TEMPLATE_DIR in settings.py (Under TEMPLATES)
+ 'DIRS': [TEMPLATE_DIR,]
+
+9) ADDING CSS FILES and IMAGES: 
+----------------
+1) Create a folder 'static' inside Main Project folder. 
+2) Inside 'static' folder, create 'images' folder to place images there. 
+3) Now, add static directory path in settings.py file.  
+
+settings.py:
+-----------
+
+STATIC_DIR = os.path.join(BASE_DIR2, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR2, 'static')]
+
+10) Now, create a HTML file inside templates/form_App folder.  
+
+
+index.html: 
+----------
+{%load static %}
+<html>
+<head>
+<link rel="stylesheet" href="{%static "css/index.css" %}">
+</head>
+<body>
+<h1> Welcome To Movie Database </h1>
+<a href='/add'> Add Movie </a> <br>
+<a href='/list'> List Movies </a>
+</body>
+</html>
+
+add_movie.html
+--------------
+
+{%load static %}
+<html>
+<head>
+<link rel="stylesheet" href="{%static "css/index.css" %}">
+</head>
+<body>
+<h1> Add Movie </h1>
+<form action='' method='post'>
+{{form}}
+{%csrf_token%}
+<input type="submit" value="Add Movie">
+</body>
+</html>
+
+CSRF Token: 
+-----------
+Cross Site Request Forgery Token - Adds Security to our website. 
+
+
+list_movie.html:
+------------
+{%load static %}
+<html>
+<head>
+<link rel="stylesheet" href="{%static "css/index.css" %}">
+</head>
+<body>
+<h1> List Of Movies </h1>
+{% if movies_list %}
+<table>
+<thead>
+    <th> Release Date </th>
+    <th> Movie Name </th>
+    <th> Director Name </th>
+    <th> imDB Rating </th>
+</thead>
+{% for movie in movies_list  %}
+<tr>
+    <td> {{movie.release_date}} </td>
+    <td> {{movie.movie_name}} </td>
+    <td> {{movie.director_name}}</td>
+    <td> {{movie.imdb_rating}} </td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<h2> No Records Found </h2>
+{%endif%}
+</body>
+</html>
+
+index.css:
+---------
+h2
+{
+color:red;
+}
+img
+{
+border: 5px solid red;
+}
+
+
+
+11) Create Model 
+models.py: 
+---------
+from django.db import models
+
+class Movie(models.Model):
+    release_date = models.DateField()
+    movie_name = models.CharField(max_length=100)
+    director_name = models.CharField(max_length=100)
+    imdb_rating = models.IntegerField()
+
+11.1) python3 manage.py makemigrations formApp
+11.2) python3 manage.py migrate
+11.3) admin.py:
+    from formApp.models import Movie
+    admin.site.register(Movie)
+
+12) Create forms.py (in the same folder, where we have models.py)
+
+forms.py:
+----------
+
+from django import forms
+from formApp.models import Movie
+
+#class StudentInfoForm(forms.Form):
+#    name = forms.CharField()
+#    mark = forms.IntegerField()
+
+class DateFormat(forms.DateInput):
+    input_type = 'date'
+
+-----------------
+from django import forms
+from formApp.models import Movie
+
+class MovieForm(forms.ModelForm):
+    release_date = forms.DateField(
+        widget=forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'})
+    ) 
+    class Meta:
+        model = Movie
+        fields = '__all__'
+        #fields = (release_date,movie_name)
+        #exclude = ['release_date']
+        
+
+13) views.py: 
+--------------
+from django.shortcuts import render
+from formApp.models import Movie
+from formApp.forms import MovieInfoForm
+
+
+#def studentDetailsView(request):
+#    form = forms.StudentInfoForm()
+#    studentInfo = {'form':form}
+#    return render(request,'firstApp/index.html',context=studentInfo)
+
+def home_page_view(request):
+    return render(request, 'firstApp/index.html')
+
+def add_movie(request):
+    i_form = MovieForm()
+    if request.method == 'POST':
+        i_form = MovieForm(request.POST)   
+        if i_form.is_valid():
+            print("Correct Date")
+            i_form.save()
+        else:
+            print("Check Date")
+    return render(request, 'formApp/add_movie.html',{'form':i_form})
+
+def list_movie_view(request):
+    movies_list = Movie.objects.all()
+    return render(request,'firstApp/list_movie.html',{'movies_list':movies_list})
+       
+
+14) urls.py: 
+-----------
+from django.contrib import admin
+from django.urls import path
+from formApp import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('home/', views.home_page_view),
+    path('add/', views.add_movie_view),
+    path('list/',views.list_movie_view),
+
+]
+-------------------------------------
+TASKS: 
+Create Trainee Feedback Form 
+Create Student Mark Submission Form
+----------------
+
+Session Management: 
+1) django-admin startproject cookiesDemo
+2) cd cookiesDemo
+3) python3 manage.py startapp cookiesApp
+4) settings.py - INSTALLED_APP, TEMPLATE_DIR
+BASE_DIR2 = os.path.dirname(os.path.dirname(os.path.abspath(file)))
+TEMPLATE_DIR = os.path.join(BASE_DIR2, 'templates')
+5) Create templates folder inside main project folder
+    - Inside templates folder, create cookiesApp folder
+
+6) Open views.py: 
+   views.py:
+   --------
+from django.shortcuts import render
+def cookies_count_view(request):
+    count = request.COOKIES.get('count',0)  #COOKIES Dictionary
+    totalCount = int(count) + 1
+    response = render(request, 'cookiesApp/cookies.html',{'count':totalCount})
+    response.set_cookie('count', totalCount)
+    return response
+
+7) cookies.html in templates folder: 
+{% load static%}
+
+<h1> Cookies Count {{count}} </h1> 
+
+8) urls.py:
+----------
+from cookiesApp import views
+
+path('cookies/', views.cookies_count_view)
+
+
+Cookies: 
+1) No security  
+2) Less Information
+3) Only String values
+
+To avoid cookie issues, Session ID is introduced in DJango. 
+Session ID stores data on the server side. 
+
+How to Set this: 
+
+settings.py: 
+---------
+django.contrib.sessions.middleware.SessionMiddleware', will be present in MIDDLEWARE
+
+How to send response + session id: 
+views.py: 
+-------
+def cookies_count_view(request):
+    count = request.session.get('count',0)  #session Dictionary
+    totalCount = int(count) + 1
+    request.session['count'] = totalCount
+    return render(request, 'cookiesApp/cookies.html',{'count':totalCount})
+    
+
+10) This session id will be stored in DB. Hence, 
+
+python3 manage.py migrate
+
+11) Run Server
+python3 manage.py runserver
+
+-----------------------------
+CRUD Operations: 
+Two Types of Views: 
+1. Function Based Views: 
+    For Complex Operations 
+2. Class Based Views
+    For Simple Operations
+
+1) django-admin startproject crudDemo
+2) cd crudDemo
+3) python3 manage.py startapp crudApp
+4) Create templates folder (crudApp folder), static folder (css folder, images folder) 
+5) Create a html file inside templates/crudApp folder
+6) settings.py - INSTALLED_APP, TEMPLATE_DIR
+BASE_DIR2 = os.path.dirname(os.path.dirname(os.path.abspath(file)))
+TEMPLATE_DIR = os.path.join(BASE_DIR2, 'templates')
+
+Add TEMPLATE_DIR in DIRS
+7) models.py: 
+class Student(models.Model):
+    sno = models.IntegerField()
+    sname = models.CharField(max_length=20)
+    sclass = models.IntegerField()
+    saddress = models.CharField(max_length=50)
+
+8) python3 manage.py makemigrations
+
+9) Create table: 
+    python3 manage.py migrate
+
+10) admin.py: 
+from django.contrib import admin
+from crudApp.models import Student
+
+class StudentAdmin(admin.ModelAdmin):
+    list = ['sno','sname','sclass','saddress']
+
+admin.site.register(Student, StudentAdmin)
+
+11) python3 manage.py createsuperuser
+
+12) python3 manage.py runserver
+
+13) 127.0.0.1/admin --> 
+
+14) Add Few Students here in 127.0.0.1/admin page. (If needed, Use Faker Module)
+
+15) views.py: 
+
+from crudApp.models import Student #Getting all objects of Student class 
+
+def retrieve_view(request):
+    student = Student.objects.all()
+    return render(request,'crudApp/index.html',{'student':student})
+
+16) Create base.html in templates/crudApp folder.  There, we are going to keep all our 
+
+base.html: 
+<html>
+<head>
+    <title> </title>
+</head>
+<body>
+    {%block content %}
+
+    {% endblock %}
+</body>
+</html>
+
+Context is content here. 
+
+17) index.html: 
+---------
+<html>
+{% extends 'crudApp/base.html' %}
+{%block content %}
+<h1> Student Details </h1>
+<table> 
+    <thead>
+        <th> Student ID </th>
+        <th> Student Name </th>
+        <th> Student Class </th>
+        <th> Student Address </th>
+    </thead>
+    <tr>
+{% for st in student %} <!--Jinja Templates
+    <td> {{st.sno}} </td>   
+    <td> {{st.sname}}</td>
+    <td> {{st.sclass}} </td>   
+    <td> {{st.saddress}}</td>
+    </tr>
+ {% endfor %}
+
+    </table>
+{% endblock %}
+</html>
+Model Data is present in HTML now.
+
+18) urls.py: 
+------------
+from crudApp import views
+
+path('check/', views.retrieve_view),
+
+19) Start Server: 
+python3 manage.py runserver
+http://127.0.0.1:8000/check/
+
+
+-----------------
+Add Student Button: 
+
+20) 
+index.html: 
+-----------
+After </table>
+<a href="#"> <button type="button"> Add New Student </button> </a>
+
+21) When we click on 'Add New Button', a form should be displayed.  For that, we should create forms.py nearby models.py
+
+22) This forms.py is going to connect with models.py. We are going to get all data from Student Model.  (If any field is not needed, we can add 'exclude' for those fields). 
+
+forms.py: 
+--------
+from django import forms
+from crudApp.models import Student
+
+# Create your models here.
+class StudentForm(forms.ModelForm):
+    class Meta: 
+        model = Student
+        fields = '__all__'
+
+23) We need a HTML file for getting inputs from User. In Templates/crudApp folder, 
+create a HTML file.  
+
+add.html: 
+--------
+<html>
+{% extends 'crudApp/base.html' %}
+{%block content %}
+<h1> Add New Student </h1>
+<form method = 'POST'>
+    {{form.as_p}}
+</form>
+{% endblock %}
+</html>
+
+24) Now, it is necessary to place a submit button.  When we add submit button, it is mandatory to add csrf token.  
+
+{%csrf_token %}
+<input type="submit" value = 'Add Student'>
+
+25) views.py: 
+------------
+from crudApp.forms import StudentForm
+
+def add_view(request):
+    form = StudentForm()
+    return render(request, 'crudApp/add.html', {'form':form})
+
+26) urls.py: 
+-------------
+path('add/', views.add_view)
+
+27) Run Server now. 
+python3 manage.py runserver
+
+28) If we add Student details, it should be displayed in Student list (127.0.0.1/check). To achieve this, 
+
+views.py: 
+def add_view(request):
+    form = StudentForm()
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+    return render(request, 'crudApp/add.html', {'form':form})
+
+
+29) redirect:
+views.py: 
+from django.shortcuts import render, redirect
+def add_view(request):
+    form = StudentForm()
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/check') #will be directed to check page
+    return render(request, 'crudApp/add.html', {'form':form})
+
+30) In index.html, change <a href="#"> to <a href="/add">
+
+Delete:
+-----------------
+1) We are going to add 'Update/Delete' link in each row.  
+Add this column in index.html file. 
+    <td> <a href="#">Update </a> /  <a href="#">Delete </a></td>
+
+2) views.py: 
+------------
+def delete_view(request, id):
+    student = Student.objects.get(id=id)
+    student.delete()
+    return redirect('/check')
+
+3) Now, change the a href link in index.html. 
+<a href='/delete/{{st.id}}'>
+
+4) urls.py: 
+----------
+path('delete/<id>',views.delete_view)
+
+Update:
+-------
+def update_view(request, id):
+    student = Student.objects.get(id=id)
+    return render(request, 'crudApp/update.html',{'student':student})
+
+update.html: 
+------------
+<html>
+{% extends 'crudApp/base.html' %}
+{%block content %}
+<h1> Update Student Details </h1>
+<form method='POST'>
+Student Roll No. <input type="text" name="sno" value="{{student.sno}}">
+Student Name <input type="text" name="sname" value="{{student.sname}}">
+Student Class <input type="text" name="sclass" value="{{student.sclass}}">
+Student Address <input type="text" name="saddress" value="{{student.saddress}}">
+{%csrf_token %}
+<input type='submit' value= 'Update Student'>
+</form>
+{% endblock %}
+</html>
+
+ -----------
+views.py:
+-------
+def update_view(request,id):
+    student = Student.objects.get(id=id)
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid:
+            form.save()
+            return redirect('/check')
+
+    return render(request, 'crudApp/update.html',{'student':student})
+
+index.html:
+--------
+<a href='/update/{{st.id}}'>Update </a> 
+
+urls.py: 
+------
+path('update/<id>',views.update_view)
+---------------
+
+-------------------------------------------------------------
+Create Postgres User in Linux Mint: 
+
+
+
+Step 1: 
+Open your terminal and log in to PostgreSQL User:
+sudo -i -u postgres
+
+Step 2: Postgres Shell
+Access the Postgres Shell. 
+psql
+
+Step 3: Create New User
+CREATE USER your_username WITH PASSWORD 'your_password';
+
+Step 4: Grant Privileges
+ * Allow the user to create databases:
+ALTER USER your_username CREATEDB;
+
+ * Give full privileges on a specific database:
+GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_username;
+
+* Make the user a superuser. It gives full access to this user. 
+ALTER USER your_username WITH SUPERUSER;
+
+Step 5: 
+Make sure this user is added. 
+\du
+
+Step 6: 
+Exit from Postgres and try logging in with your new user:
+psql -U your_username -d your_database_name -h localhost -W
+
+Step 7: 
+To communicate with PostgreSQL, psycopg2 package is necessary. Install it as below. 
+
+pip3 install psycopg2-binary
+
+Step 8:
+Now, you can update the DATABASES configuration in settings.py file. 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'your_database_name',
+        'USER': 'your_database_user',
+        'PASSWORD': 'your_database_password',
+        'HOST': 'localhost',  
+        'PORT': '5432',      
+    }
+}
+
+Step 9: 
+Now, move to your project in terminal  and create necessary tables in Postgres. 
+
+python3 manage.py migrate
+
+Step 10: 
+Now, it is optional to create Super User. 
+python3 manage.py createsuperuser
+
+Step 11: 
+Start Django Development Server. 
+python3 manage.py runserver
+
+Step 12: 
+To check if Django is connected to PostgreSQL, you can use:
+
+python manage.py dbshell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
